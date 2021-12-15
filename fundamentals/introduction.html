@@ -1,0 +1,494 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction &#8212; Minterpy 0.1</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="canonical" href="https://minterpy.readthedocs.io/en/latest/fundamentals/introduction.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Multivariate polynomial bases" href="polynomial-bases.html" />
+    <link rel="prev" title="Fundamentals of minterpy" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/minterpy-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../getting-started/index.html">
+  Getting Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../how-to/index.html">
+  How-to
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  Fundamentals
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../api/index.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../contributors/index.html">
+  Contributors
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../glossary.html">
+  Glossary
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="polynomial-bases.html">
+   Multivariate polynomial bases
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="interpolation-in-unisolvent-nodes.html">
+   Interpolation in unisolvent nodes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="interpolation-evaluation.html">
+   Evaluation of multivariate polynomials
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multivariate-dds.html">
+   Multivariate divided difference scheme (DDS)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformation.html">
+   Transformation between bases
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="barycentric-transformation.html">
+   Barycentric transformation
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multivariate-polynomial-interpolation">
+   Multivariate polynomial interpolation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lifting-the-curse-of-dimensionality">
+   Lifting the curse of dimensionality
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-notion-of-unisolvence">
+   The notion of unisolvence
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="multivariate-polynomial-interpolation">
+<h2>Multivariate polynomial interpolation<a class="headerlink" href="#multivariate-polynomial-interpolation" title="Permalink to this headline">¶</a></h2>
+<p>Polynomial interpolation goes back to Newton, Lagrange, and others<a class="footnote-reference brackets" href="#footcite-meijering2002" id="id1">1</a>,
+and its fundamental importance for mathematics and computing is undisputed.
+Interpolation is based on the fact that, in 1D, one and only one polynomial <span class="math notranslate nohighlight">\(Q_{f,A}\)</span> of degree <span class="math notranslate nohighlight">\(n \in \mathbb{N}\)</span> can
+interpolate a function <span class="math notranslate nohighlight">\(f : \mathbb{R} \longrightarrow \mathbb{R}\)</span> on <span class="math notranslate nohighlight">\(n+1\)</span> distinct
+<em>unisolvent interpolation nodes</em>
+<span class="math notranslate nohighlight">\(P_A = \{p_i\}_{i \in A} \subseteq \mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(A=\{0, \ldots, n\}\)</span>, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[Q_{f,A}(p_i) = f(p_i)\,, \quad \text{for all} \quad  p_i \in P_A \,, i \in A\,.\]</div>
+<p>This makes interpolation fundamentally different from approximation, see Figure 1.</p>
+<div class="figure align-center" id="id29">
+<img alt="../_images/1D_interpol.png" src="../_images/1D_interpol.png" />
+<p class="caption"><span class="caption-text">Figure 1: Interpolation and approximation in 1D. While the interpolant <span class="math notranslate nohighlight">\(Q_{f,A}\)</span> has to coincide with <span class="math notranslate nohighlight">\(f\)</span>
+in the interpolation nodes <span class="math notranslate nohighlight">\(p_0,\ldots,p_n\)</span> an approximation <span class="math notranslate nohighlight">\(Q^*_n\)</span> does not have to coincide with <span class="math notranslate nohighlight">\(f\)</span> at all.</span><a class="headerlink" href="#id29" title="Permalink to this image">¶</a></p>
+</div>
+<p>The famous <em>Weierstrass Approximation Theorem</em><a class="footnote-reference brackets" href="#footcite-weierstrass1885" id="id2">2</a> states
+that any continuous function <span class="math notranslate nohighlight">\(f : \Omega\longrightarrow \mathbb{R}\)</span> defined on compact domain, e.g. <span class="math notranslate nohighlight">\(\Omega = [-1,1]^m\)</span>,
+can be uniformly approximated by polynomials<a class="footnote-reference brackets" href="#footcite-debranges1959" id="id3">3</a>.
+However, the Weierstrass Approximation Theorem does not require the polynomials
+to coincide with <span class="math notranslate nohighlight">\(f\)</span> at all, i.e., it is possible that there is a sequence of multivariate polynomials
+<span class="math notranslate nohighlight">\(Q_{n}^*\)</span>, <span class="math notranslate nohighlight">\(n \in \mathbb{N}\)</span> with <span class="math notranslate nohighlight">\(Q_{n}^*(x) \not = f(x)\)</span> for all <span class="math notranslate nohighlight">\(x \in \Omega\)</span>,
+but still</p>
+<div class="math notranslate nohighlight">
+\[Q_{n}^* \xrightarrow[n \rightarrow \infty]{} f \quad \text{uniformly on} \quad \Omega\,.\]</div>
+<p>There are several constructive proofs of the Weierstrass approximation theorem, including the prominent version given by Serge Bernstein<a class="footnote-reference brackets" href="#footcite-bernstein1912" id="id4">4</a>.
+Although the resulting <em>Bernstein approximation scheme</em>
+is universal and has been proven to reach the optimal (inverse-linear) approximation rate for the absolute value function <span class="math notranslate nohighlight">\(f(x) = |x|\)</span>
+<a class="footnote-reference brackets" href="#footcite-bernstein1914" id="id5">5</a>,
+it achieves only slow convergence rates for analytic functions, resulting in a high computational cost in practice.</p>
+<p>There has therefore been much research into extending 1D Newton
+or Lagrange interpolation schemes to multi–dimensions (mD) by maintaining their
+computational power.
+Any approach that addresses this problem has to avoid Runge’s phenomenon<a class="footnote-reference brackets" href="#footcite-runge1901" id="id6">6</a> (overfitting) by guaranteeing uniform approximation of the
+interpolation target <span class="math notranslate nohighlight">\(f : \Omega \longrightarrow \mathbb{R}\)</span> and resist the <em>curse of dimensionality</em>, i.e.,
+reach highly accurate polynomial approximations of general multivariate functions with a sub-exponentially depending demand of data samples <span class="math notranslate nohighlight">\(f(p)\,,p \in P_A\)</span>, <span class="math notranslate nohighlight">\(|P_A|\in o(n^m)\)</span>.</p>
+</div>
+<div class="section" id="lifting-the-curse-of-dimensionality">
+<h2>Lifting the curse of dimensionality<a class="headerlink" href="#lifting-the-curse-of-dimensionality" title="Permalink to this headline">¶</a></h2>
+<p>To address the problem we consider the <span class="math notranslate nohighlight">\(l_p\)</span>-norm <span class="math notranslate nohighlight">\(\|\alpha\|_p = (\alpha_1^p + \cdots +\alpha_m^p)^{1/p}\)</span>,
+<span class="math notranslate nohighlight">\(\alpha = (\alpha_1,\dots,\alpha_m) \in\mathbb{N}^m\)</span>, <span class="math notranslate nohighlight">\(m \in \mathbb{N}\)</span> and the
+<em>lexicographical ordered</em> <a class="reference internal" href="../api/core/multi_index.html"><span class="doc">Multi index sets</span></a>.</p>
+<div class="math notranslate nohighlight" id="equation-eq-a">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-a" title="Permalink to this equation">¶</a></span>\[A_{m,n,p} = \left\{\alpha \in \mathbb{N}^m : \|\alpha\|_p \leq n \right\}\,, \quad m,n \in \mathbb{N}\,, p \geq 1\,.\]</div>
+<p>This notion generalises the 1D notion of polynomial degree to multi-dimensional <span class="math notranslate nohighlight">\(l_p\)</span>-degree, i.e, we consider
+the polynomial spaces spanned by all monomials of bounded <span class="math notranslate nohighlight">\(l_p\)</span>-degree</p>
+<div class="math notranslate nohighlight">
+\[\Pi_A =  \left&lt; x^\alpha = x^{\alpha_1}\cdots x^{\alpha_m} : \alpha \in A \right&gt;\,, A =A_{m,n,p}\,.\]</div>
+<p>Given <span class="math notranslate nohighlight">\(A=A_{m,n,p}\)</span> we ask for:</p>
+<p><span class="math notranslate nohighlight">\(i)\)</span> Unisolvent interpolation nodes <span class="math notranslate nohighlight">\(P_A\)</span> that uniquely determine the interpolant <span class="math notranslate nohighlight">\(Q_{f,A} \in \Pi_A\)</span>
+by satisfying <span class="math notranslate nohighlight">\(Q_{f,A}(p_{\alpha}) = f(p_{\alpha})\)</span>, <span class="math notranslate nohighlight">\(\forall p_{\alpha} \in P_A\)</span>, <span class="math notranslate nohighlight">\(\alpha \in A\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(ii)\)</span> An interpolation scheme <a class="reference internal" href="multivariate-dds.html"><span class="doc">Multivariate divided difference scheme (DDS)</span></a> that computes the uniquely determined interpolant <span class="math notranslate nohighlight">\(Q_{f,A} \in \Pi_A\)</span>
+efficiently and numerically accurate (with machine precision).</p>
+<p><span class="math notranslate nohighlight">\(iii)\)</span> The unisolvent nodes <span class="math notranslate nohighlight">\(P_A\)</span> that scale sub-exponentially with the space dimension <span class="math notranslate nohighlight">\(m \in \mathbb{N}\)</span>,
+<span class="math notranslate nohighlight">\(|P_A| \in o(n^m)\)</span> and guarantee uniform approximation of even strongly varying functions (avoiding over
+fitting) as the Runge function <span class="math notranslate nohighlight">\(f_R(x) = 1/(1+\|x\|^2)\)</span> by fast (ideally exponential) approximation rates.</p>
+<div class="figure align-center" id="id30">
+<img alt="../_images/mip_approximation.png" src="../_images/mip_approximation.png" />
+<p class="caption"><span class="caption-text">Approximation errors rates for interpolating the Runge function in dimension <span class="math notranslate nohighlight">\(m = 4\)</span>.</span><a class="headerlink" href="#id30" title="Permalink to this image">¶</a></p>
+</div>
+<p>In fact, the results of<a class="footnote-reference brackets" href="#footcite-hecht2020" id="id7">7</a> suggest that the therein presented <a class="reference internal" href="multivariate-dds.html"><span class="doc">multivariate DDS</span></a> resolves issues <span class="math notranslate nohighlight">\(i) - iii)\)</span> for so called <em>Trefethen functions</em>
+when choosing Euclidian <span class="math notranslate nohighlight">\(l_2\)</span>-degree and <strong>Leja ordered Chebyshev-Lobatto unisolvent interpolation nodes</strong> <span class="math notranslate nohighlight">\(P_A\)</span>. Thereby,</p>
+<div class="math notranslate nohighlight">
+\[|P_A| \approx \frac{(n+1)^m }{\sqrt{\pi m}} (\frac{\pi \mathrm{e}}{2m})^{m/2} \in o(n^m)\,, \quad  A=A_{m,n,2}\,,\]</div>
+<p>scales sub-expomemtially with space dimension <span class="math notranslate nohighlight">\(m\)</span> and</p>
+<div class="math notranslate nohighlight">
+\[Q_{f,A_{m,n,2}} \xrightarrow[n\rightarrow \infty]{} f\]</div>
+<p>converges uniformly and fast (exponentially) on <span class="math notranslate nohighlight">\(\Omega = [-1,1]^m\)</span>.
+Figure 2 shows the approximation rates of the classic Runge function<a class="footnote-reference brackets" href="#footcite-runge1901" id="id8">6</a> in dimension <span class="math notranslate nohighlight">\(m=4\)</span>,
+which is known to cause Runge’s pehenomenon (over-fitting) when interpolated naïvely.
+There is an optimal (upper bound) approximation rate</p>
+<div class="math notranslate nohighlight">
+\[\|Q_{f,A} - f\| \in \mathcal{O}_{\varepsilon}(\rho^{-n})\]</div>
+<p>known<a class="footnote-reference brackets" href="#footcite-trefethen2017" id="id9">8</a>,which we call the <em>Trefethen rate</em>.</p>
+<p>In fact, the <a class="reference internal" href="multivariate-dds.html"><span class="doc">Multivariate divided difference scheme (DDS)</span></a> scheme numerically reaches the optimal Trefethen rate.
+In contrast,
+spline-type interpolation is based on works of Carl de Boor
+et al.<a class="footnote-reference brackets" href="#footcite-deboor1972" id="id10">9</a><a class="footnote-reference brackets" href="#footcite-deboor1977" id="id11">10</a><a class="footnote-reference brackets" href="#footcite-deboor1978" id="id12">11</a><a class="footnote-reference brackets" href="#footcite-deboor2010" id="id13">12</a> and limited
+to reach only polynomial approximation rates<a class="footnote-reference brackets" href="#footcite-deboor1988" id="id14">13</a>.
+Similarly, interpolation by rational functions as in Floater-Hormann interpolation<a class="footnote-reference brackets" href="#footcite-cirillo2017" id="id15">14</a><a class="footnote-reference brackets" href="#footcite-floater2007" id="id16">15</a>
+and tensorial Chebyshev interpolation, relying on <span class="math notranslate nohighlight">\(l_{\infty}\)</span>-degree<a class="footnote-reference brackets" href="#footcite-gaure2018" id="id17">16</a>,
+miss optimality.</p>
+<p>Combining sub-exponential node (data) counts with exponential approximation rates, the <strong>DDS</strong> algorithm
+may <em>lift the curse of dimensionality</em> for interpolation problems of regular (Trefethen) functions<a class="footnote-reference brackets" href="#footcite-hecht2020" id="id18">7</a>.</p>
+</div>
+<div class="section" id="the-notion-of-unisolvence">
+<h2>The notion of unisolvence<a class="headerlink" href="#the-notion-of-unisolvence" title="Permalink to this headline">¶</a></h2>
+<p>The pioneering works of<a class="footnote-reference brackets" href="#footcite-kuntz" id="id19">17</a><a class="footnote-reference brackets" href="#footcite-guenther" id="id20">18</a><a class="footnote-reference brackets" href="#footcite-chung" id="id21">19</a> gave constructions of nodes <span class="math notranslate nohighlight">\(P_A\)</span> that turn out o be unisolvent
+for downward closed <a class="reference internal" href="polynomial-bases.html#multi-index-sets-and-polynomial-degree"><span class="std std-ref">multi-index sets</span></a>  <span class="math notranslate nohighlight">\(A= A_{m,n,1}\)</span> or <span class="math notranslate nohighlight">\(A =A_{m,n,\infty}\)</span>
+given by <span class="math notranslate nohighlight">\(l_1\)</span>- or <span class="math notranslate nohighlight">\(l_\infty\)</span>-degree.</p>
+<p>For multi-index sets <span class="math notranslate nohighlight">\(A_{m,n,p}\)</span>, <span class="math notranslate nohighlight">\(1\leq p \leq \infty\)</span> and interpolation nodes
+<span class="math notranslate nohighlight">\(P_A=\{p_{\alpha}\}_{\alpha\in A} \subseteq \Omega =[-1,1]^m\)</span>
+a set <span class="math notranslate nohighlight">\(\{q_{\alpha}\}_{\alpha \in A}\)</span> of multivariate polynomials (e.g., <span class="math notranslate nohighlight">\(q_{\alpha}(x) = x^\alpha:=x_1^{\alpha_1}\cdots x_m^{\alpha_m}\)</span>),
+generating the polynomial space <span class="math notranslate nohighlight">\(\Pi_A = \left&lt;q_{\alpha} : \alpha \in A \right&gt;\)</span>
+the <em>multivariate Vandermonde matrix</em> is given by</p>
+<div class="math notranslate nohighlight">
+\[V(P_A) = \big (q_{\beta}(p_{\alpha})\big)_{\alpha,\beta \in A} \in \mathbb{R}^{|A|\times|A|}\,.\]</div>
+<p>For <span class="math notranslate nohighlight">\(q_{\alpha}(x) = x^\alpha\)</span>, this results in the classic <span class="math notranslate nohighlight">\(V(P_A) = \big (p_{\alpha}^\beta\big)_{\alpha,\beta \in A}\)</span><a class="footnote-reference brackets" href="#footcite-gautschi2012" id="id22">20</a>.
+If <span class="math notranslate nohighlight">\(V(P_A)\)</span> is (numerically) invertible, then one can interpolate <em class="xref py py-obj">f</em> by solving the linear system of equations</p>
+<div class="math notranslate nohighlight">
+\[V(P_A)C =F \,,  \quad C= (c_{\alpha})_{\alpha \in A} \,, \,\, \quad F= (f(p_{\alpha}))_{\alpha \in A} \in \mathbb{R}^{|A|}.\]</div>
+<p>This requires <span class="math notranslate nohighlight">\(\mathcal{O}(|A|^r)\)</span> operations with <span class="math notranslate nohighlight">\(r&gt;2\)</span><a class="footnote-reference brackets" href="#footcite-strassen1969" id="id23">21</a><a class="footnote-reference brackets" href="#footcite-coppersmith1990" id="id24">22</a>,
+whereas the present <strong>DDS</strong> achieves quadratic runtime <span class="math notranslate nohighlight">\(\mathcal{O}(|A|^2)\)</span>.
+Indeed,</p>
+<div class="math notranslate nohighlight">
+\[Q_{f,A}(x)=\sum_{\alpha \in A}c_\alpha q_\alpha \,\, \in \Pi_A\]</div>
+<p>yields the unique interpolant of <span class="math notranslate nohighlight">\(f\)</span> in <span class="math notranslate nohighlight">\(P_A\)</span>, i.e.,  <span class="math notranslate nohighlight">\(Q_{f,A}(p)=f(p)\)</span> for all <span class="math notranslate nohighlight">\(p \in P_A\)</span>.
+We therefore call a set of nodes <span class="math notranslate nohighlight">\(P_A\)</span> <em>unisolvent</em> with respect to <span class="math notranslate nohighlight">\(\Pi_A\)</span> if and only if <span class="math notranslate nohighlight">\(V(P_A)\)</span>
+is invertible, i.e., if and only if its null space <span class="math notranslate nohighlight">\(\ker V(P_A) =0\)</span> is trivial.
+The condition <span class="math notranslate nohighlight">\(\ker V(P_A) =0\)</span> is equivalent to requiring that there exists no hypersurface <span class="math notranslate nohighlight">\(H = Q^{-1}(0)\)</span>
+generated by a polynomial <span class="math notranslate nohighlight">\(0\not =Q \in \Pi_A\)</span> with <span class="math notranslate nohighlight">\(P_A \subseteq H\)</span>.
+Indeed, the coefficients <span class="math notranslate nohighlight">\(C\)</span> of such a polynomial would be a non-trivial solution of <span class="math notranslate nohighlight">\(V(P_A)C=0\)</span>.</p>
+<p>However, even if <span class="math notranslate nohighlight">\(P_A\)</span> is unisolvent, the matrix <span class="math notranslate nohighlight">\(V(P_A)\)</span> rapidly becomes numerically ill-conditioned for higher dimensions or degrees
+when using the canonical basis <span class="math notranslate nohighlight">\(q_{\alpha}(x) =x^\alpha\)</span>, <span class="math notranslate nohighlight">\(\alpha \in A\)</span>.
+While previous approaches addressed this problem by <em>tensorial interpolation</em><a class="footnote-reference brackets" href="#footcite-sauertens" id="id25">23</a><a class="footnote-reference brackets" href="#footcite-dyn2014" id="id26">24</a><a class="footnote-reference brackets" href="#footcite-chebfun" id="id27">25</a>, <code class="docutils literal notranslate"><span class="pre">minterpy</span></code>
+is based on the <a class="reference internal" href="multivariate-dds.html"><span class="doc">Multivariate divided difference scheme (DDS)</span></a> that even for non-tensorial interpolation nodes such as the by default choosen
+<strong>Leja ordered Chebyshev-Lobatto nodes</strong> realises efficient and accurate polynomial interpolation.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p id="id28"><dl class="footnote brackets">
+<dt class="label" id="footcite-meijering2002"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Erik Meijering. A chronology of interpolation: from ancient astronomy to modern signal and image processing. <em>Proceedings of the IEEE</em>, 90(3):319–342, 2002.</p>
+</dd>
+<dt class="label" id="footcite-weierstrass1885"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>K Weierstrass. Über die analytische darstellbarkeit sogenannter willkürlicher funktionen einer reellen veränderlichen. <em>Sitzungsberichte der Königlich Preußischen Akademie der Wissenschaften zu Berlin</em>, 2:633–639, 1885.</p>
+</dd>
+<dt class="label" id="footcite-debranges1959"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>Louis De Branges. The stone-weierstrass theorem. <em>Proceedings of the American Mathematical Society</em>, 10(5):822–824, 1959.</p>
+</dd>
+<dt class="label" id="footcite-bernstein1912"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dd><p>Serge Bernstein. <em>Sur l’ordre de la meilleure approximation des fonctions continues par des polynômes de degré donné</em>. Volume 4. Hayez, imprimeur des académies royales, 1912.</p>
+</dd>
+<dt class="label" id="footcite-bernstein1914"><span class="brackets"><a class="fn-backref" href="#id5">5</a></span></dt>
+<dd><p>Serge Bernstein. Sur la meilleure approximation de |x| par des polynomes de degrés donnés. <em>Acta Mathematica</em>, 37(1):1–57, 1914.</p>
+</dd>
+<dt class="label" id="footcite-runge1901"><span class="brackets">6</span><span class="fn-backref">(<a href="#id6">1</a>,<a href="#id8">2</a>)</span></dt>
+<dd><p>Carl Runge. Über empirische funktionen und die interpolation zwischen äquidistanten ordinaten. <em>Zeitschrift für Mathematik und Physik</em>, 46(224-243):20, 1901.</p>
+</dd>
+<dt class="label" id="footcite-hecht2020"><span class="brackets">7</span><span class="fn-backref">(<a href="#id7">1</a>,<a href="#id18">2</a>)</span></dt>
+<dd><p>Michael Hecht, Krzysztof Gonciarz, Jannik Michelfeit, Vladimir Sivkin, and Ivo F Sbalzarini. Multivariate interpolation on unisolvent nodes–lifting the curse of dimensionality. <em>arXiv preprint arXiv:2010.10824</em>, 2020.</p>
+</dd>
+<dt class="label" id="footcite-trefethen2017"><span class="brackets"><a class="fn-backref" href="#id9">8</a></span></dt>
+<dd><p>Lloyd Trefethen. Multivariate polynomial approximation in the hypercube. <em>Proceedings of the American Mathematical Society</em>, 145(11):4837–4844, 2017.</p>
+</dd>
+<dt class="label" id="footcite-deboor1972"><span class="brackets"><a class="fn-backref" href="#id10">9</a></span></dt>
+<dd><p>Carl De Boor. On calculating with b-splines. <em>Journal of Approximation theory</em>, 6(1):50–62, 1972.</p>
+</dd>
+<dt class="label" id="footcite-deboor1977"><span class="brackets"><a class="fn-backref" href="#id11">10</a></span></dt>
+<dd><p>Carl De Boor. Efficient computer manipulation of tensor products. Technical Report, WISCONSIN UNIV MADISON MATHEMATICS RESEARCH CENTER, 1977.</p>
+</dd>
+<dt class="label" id="footcite-deboor1978"><span class="brackets"><a class="fn-backref" href="#id12">11</a></span></dt>
+<dd><p>Carl De Boor and Carl De Boor. <em>A practical guide to splines</em>. Volume 27. springer-verlag New York, 1978.</p>
+</dd>
+<dt class="label" id="footcite-deboor2010"><span class="brackets"><a class="fn-backref" href="#id13">12</a></span></dt>
+<dd><p>Carl De Boor. On wings of splines. In <em>Creative Minds, Charmed Lives: Interviews at Institute for Mathematical Sciences, National University of Singapore</em>, pages 50–57. World Scientific, 2010.</p>
+</dd>
+<dt class="label" id="footcite-deboor1988"><span class="brackets"><a class="fn-backref" href="#id14">13</a></span></dt>
+<dd><p>Carl De Boor and Klaus Höllig. Approximation power of smooth bivariate pp functions. <em>Mathematische Zeitschrift</em>, 197(3):343–363, 1988.</p>
+</dd>
+<dt class="label" id="footcite-cirillo2017"><span class="brackets"><a class="fn-backref" href="#id15">14</a></span></dt>
+<dd><p>Emiliano Cirillo, Kai Hormann, and Jean Sidon. Convergence rates of derivatives of floater–hormann interpolants for well-spaced nodes. <em>Applied Numerical Mathematics</em>, 116:108–118, 2017.</p>
+</dd>
+<dt class="label" id="footcite-floater2007"><span class="brackets"><a class="fn-backref" href="#id16">15</a></span></dt>
+<dd><p>Michael S Floater and Kai Hormann. Barycentric rational interpolation with no poles and high rates of approximation. <em>Numerische Mathematik</em>, 107(2):315–331, 2007.</p>
+</dd>
+<dt class="label" id="footcite-gaure2018"><span class="brackets"><a class="fn-backref" href="#id17">16</a></span></dt>
+<dd><p>Simen Gaure. Usage notes for package chebpol. 2018. URL: <a class="reference external" href="https://cran.r-project.org/package=chebpol">https://cran.r-project.org/package=chebpol</a>.</p>
+</dd>
+<dt class="label" id="footcite-kuntz"><span class="brackets"><a class="fn-backref" href="#id19">17</a></span></dt>
+<dd><p>J. Kuntzmann. Méthodes numériques. interpolation. dérivées. <em>Dunod Editeur, Paris</em>, 1960.</p>
+</dd>
+<dt class="label" id="footcite-guenther"><span class="brackets"><a class="fn-backref" href="#id20">18</a></span></dt>
+<dd><p>R. B. Guenther and E. L. Roetman. Some observations on interpolation in higher dimensions. <em>Math. Comput.</em>, 24:517–522, 1970.</p>
+</dd>
+<dt class="label" id="footcite-chung"><span class="brackets"><a class="fn-backref" href="#id21">19</a></span></dt>
+<dd><p>T. H. Yao K. C. Chung. On lattices admitting unique Lagrange interpolations. <em>SIAM Journal on Numerical Analysis</em>, 14(4):735–743, sep 1977.</p>
+</dd>
+<dt class="label" id="footcite-gautschi2012"><span class="brackets"><a class="fn-backref" href="#id22">20</a></span></dt>
+<dd><p>Walter Gautschi. <em>Numerical analysis</em>. Birkhäuser Boston, 2012. <a class="reference external" href="https://doi.org/10.1007/978-0-8176-8259-0">doi:10.1007/978-0-8176-8259-0</a>.</p>
+</dd>
+<dt class="label" id="footcite-strassen1969"><span class="brackets"><a class="fn-backref" href="#id23">21</a></span></dt>
+<dd><p>Volker Strassen. Gaussian elimination is not optimal. <em>Numerische Mathematik</em>, 13(4):354–356, 1969. <a class="reference external" href="https://doi.org/10.1007/bf02165411">doi:10.1007/bf02165411</a>.</p>
+</dd>
+<dt class="label" id="footcite-coppersmith1990"><span class="brackets"><a class="fn-backref" href="#id24">22</a></span></dt>
+<dd><p>Don Coppersmith and Shmuel Winograd. Matrix multiplication via arithmetic progressions. <em>Journal of Symbolic Computation</em>, 9(3):251–280, 1990. <a class="reference external" href="https://doi.org/10.1016/s0747-7171(08)80013-2">doi:10.1016/s0747-7171(08)80013-2</a>.</p>
+</dd>
+<dt class="label" id="footcite-sauertens"><span class="brackets"><a class="fn-backref" href="#id25">23</a></span></dt>
+<dd><p>Thomas Sauer. Lagrange interpolation on subgrids of tensor product grids. <em>Mathematics of Computation</em>, 73(245):181–190, 2004.</p>
+</dd>
+<dt class="label" id="footcite-dyn2014"><span class="brackets"><a class="fn-backref" href="#id26">24</a></span></dt>
+<dd><p>Nira Dyn and Michael S. Floater. Multivariate polynomial interpolation on lower sets. <em>Journal of Approximation Theory</em>, 177:34–42, 2014. <a class="reference external" href="https://doi.org/10.1016/j.jat.2013.09.008">doi:10.1016/j.jat.2013.09.008</a>.</p>
+</dd>
+<dt class="label" id="footcite-chebfun"><span class="brackets"><a class="fn-backref" href="#id27">25</a></span></dt>
+<dd><p>Tobin A Driscoll, Nicholas Hale, and Lloyd N. Trefethen. Chebfun guide. <em>Pafnuty Publications, Oxford</em>, 2014.</p>
+</dd>
+</dl>
+</p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Fundamentals of <code class="docutils literal notranslate"><span class="pre">minterpy</span></code></p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="polynomial-bases.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Multivariate polynomial bases</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Minterpy development team.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

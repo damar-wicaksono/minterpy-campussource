@@ -1,0 +1,429 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>minterpy Documentation &#8212; Minterpy 0.1</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="canonical" href="https://minterpy.readthedocs.io/en/latest/index.html" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting started with minterpy" href="getting-started/index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="#">
+  <img src="_static/minterpy-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="getting-started/index.html">
+  Getting Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="how-to/index.html">
+  How-to
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="fundamentals/index.html">
+  Fundamentals
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="api/index.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="contributors/index.html">
+  Contributors
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="glossary.html">
+  Glossary
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-minterpy">
+   What is
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     minterpy
+    </span>
+   </code>
+   ?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#full-table-of-contents">
+   Full table of contents
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="minterpy-documentation">
+<h1><code class="docutils literal notranslate"><span class="pre">minterpy</span></code> Documentation<a class="headerlink" href="#minterpy-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Welcome!
+This is the documentation for <code class="docutils literal notranslate"><span class="pre">minterpy</span></code> 0.1.1.dev232+g974bd94.d20211129, last updated on Dec 15, 2021.</p>
+<div class="section" id="what-is-minterpy">
+<h2>What is <code class="docutils literal notranslate"><span class="pre">minterpy</span></code>?<a class="headerlink" href="#what-is-minterpy" title="Permalink to this headline">¶</a></h2>
+<p>The Python package <code class="docutils literal notranslate"><span class="pre">minterpy</span></code> is based on an optimized re-implementation of
+the multivariate interpolation prototype algorithm (<em>MIP</em>) by Hecht et al.<a class="footnote-reference brackets" href="#footcite-hecht2020" id="id1">1</a>
+and thereby provides software solutions that lift the curse of dimensionality from interpolation tasks.
+While interpolation occurs as the bottleneck of most computational challenges,
+<code class="docutils literal notranslate"><span class="pre">minterpy</span></code> aims to free empirical sciences from their computational limitations.</p>
+<p><code class="docutils literal notranslate"><span class="pre">minterpy</span></code> is continuously extended and improved
+by adding further functionality and modules that provide novel digital solutions
+to a broad field of computational challenges, including but not limited to:</p>
+<ul class="simple">
+<li><p>multivariate interpolation</p></li>
+<li><p>non-linear polynomial regression</p></li>
+<li><p>numerical integration</p></li>
+<li><p>global (black-box) optimization</p></li>
+<li><p>surface level-set methods</p></li>
+<li><p>non-periodic spectral partial differential equations (PDE) solvers on
+flat and complex geometries</p></li>
+<li><p>machine learning regularization</p></li>
+<li><p>data reconstruction</p></li>
+<li><p>computational solutions in algebraic geometry</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">minterpy</span></code> is an open-source Python package that makes it easily accessible
+and allows for further development and improvement by the Python community.</p>
+</div>
+<div class="section" id="full-table-of-contents">
+<h2>Full table of contents<a class="headerlink" href="#full-table-of-contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/index.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="getting-started/index.html#testing-the-installation">Testing the installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/index.html#what-s-next">What’s next</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started/index.html#tutorials-table-of-contents">Tutorials table of contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="getting-started/one-dimensional-function-interpolation.html">One-dimensional function interpolation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting-started/polynomial-regression.html">Polynomial Regression</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="how-to/index.html">How-to</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fundamentals/index.html">Fundamentals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fundamentals/introduction.html">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/introduction.html#multivariate-polynomial-interpolation">Multivariate polynomial interpolation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/introduction.html#lifting-the-curse-of-dimensionality">Lifting the curse of dimensionality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/introduction.html#the-notion-of-unisolvence">The notion of unisolvence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/introduction.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fundamentals/polynomial-bases.html">Multivariate polynomial bases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/polynomial-bases.html#multi-index-sets-and-polynomial-degree">Multi-index sets and polynomial degree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/polynomial-bases.html#canonical-polynomials">Canonical polynomials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/polynomial-bases.html#lagrange-polynomials">Lagrange polynomials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/polynomial-bases.html#newton-polynomials">Newton polynomials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/polynomial-bases.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fundamentals/interpolation-in-unisolvent-nodes.html">Interpolation in unisolvent nodes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/interpolation-in-unisolvent-nodes.html#generating-nodes">Generating nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/interpolation-in-unisolvent-nodes.html#unisolvent-nodes">Unisolvent nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/interpolation-in-unisolvent-nodes.html#lagrange-interpolation">Lagrange interpolation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/interpolation-in-unisolvent-nodes.html#newton-interpolation">Newton interpolation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/interpolation-in-unisolvent-nodes.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fundamentals/interpolation-evaluation.html">Evaluation of multivariate polynomials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/interpolation-evaluation.html#canonical-evaluation">Canonical evaluation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/interpolation-evaluation.html#newton-evaluation">Newton evaluation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/interpolation-evaluation.html#lagrange-evaluation">Lagrange evaluation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/interpolation-evaluation.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fundamentals/multivariate-dds.html">Multivariate divided difference scheme (DDS)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/multivariate-dds.html#splitting-theorems">Splitting Theorems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/multivariate-dds.html#d-divided-difference-scheme">1D Divided Difference Scheme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/multivariate-dds.html#multi-index-tree">Multi-index tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/multivariate-dds.html#splitting-of-the-unisolvent-nodes">Splitting of the unisolvent nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/multivariate-dds.html#sub-tree-recursion">Sub-tree recursion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/multivariate-dds.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fundamentals/transformation.html">Transformation between bases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/transformation.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fundamentals/barycentric-transformation.html">Barycentric transformation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="fundamentals/barycentric-transformation.html#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/interpolation/index.html">Interpolation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/interpolation/interpolate.html">interpolate function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/interpolation/interpolant.html">Interpolant class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/interpolation/interpolator.html">Interpolator class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/core/index.html">Core modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/core/multi_index.html">Multi index sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/core/grid.html">Grid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/core/tree.html">Multi index tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/core/ABC/index.html">Abstract base classes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/polyBases/index.html">Polynomial Base classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/polyBases/canonical.html">Canonical Polynomial Base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/polyBases/newton.html">Newton Polynomial Base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/polyBases/lagrange.html">Lagrange Polynomial Base</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/transformations/index.html">Polynomial Transformation classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/transformations/transformationCanonical.html">From Canonical basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/transformations/transformationNewton.html">From Newton basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/transformations/transformationLagrange.html">From Lagrange basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/transformations/transformationIdentity.html">Identity transformation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/transformations/interface.html">Helper functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/transformOperators/index.html">Transformation Operator classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/transformOperators/barycentricOp.html">Barycentric Operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/transformOperators/matrixTransform.html">Matrix Operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/transformOperators/barycentricDictTransform.html">Barycentric Dict Operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/transformOperators/barycentricFactorisedTransform.html">Barycentric Factorised Operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/transformOperators/barycentricPiecewiseTransform.html">Barycentric Piecewise Operator</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/internal/index.html">Internal API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/internal/utils.html">utility functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/internal/coreutils.html">core utility functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/internal/trafoutils.html">transformation utility functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/internal/verification.html">verification functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/internal/jit_compiled_utils.html">numba accelerated utility functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributors/index.html">Contributors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributors/code-of-conduct.html">Code of conduct</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributors/code-of-conduct.html#our-pledge">Our pledge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributors/code-of-conduct.html#our-standards">Our standards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributors/code-of-conduct.html#enforcement-responsibilities">Enforcement responsibilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributors/code-of-conduct.html#scope">Scope</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributors/code-of-conduct.html#enforcement-and-reporting">Enforcement and reporting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributors/code-of-conduct.html#attribution">Attribution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributors/contrib-dev/index.html">Development contribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributors/contrib-docs/index.html">Documentation contribution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributors/contrib-docs/index.html#about-the-documentation">About the documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributors/contrib-docs/index.html#how-to-contribute">How to contribute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributors/contrib-docs/index.html#contribution-guidelines">Contribution guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributors/about-us.html">About Us</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributors/about-us.html#project-maintainers">Project maintainers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributors/about-us.html#contributors">Contributors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributors/about-us.html#former-contributors">Former contributors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributors/about-us.html#sponsors">Sponsors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p id="id2"><dl class="footnote brackets">
+<dt class="label" id="footcite-hecht2020"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Michael Hecht, Krzysztof Gonciarz, Jannik Michelfeit, Vladimir Sivkin, and Ivo F Sbalzarini. Multivariate interpolation on unisolvent nodes–lifting the curse of dimensionality. <em>arXiv preprint arXiv:2010.10824</em>, 2020.</p>
+</dd>
+</dl>
+</p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='right-next' id="next-link" href="getting-started/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Getting started with <code class="docutils literal notranslate"><span class="pre">minterpy</span></code></p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Minterpy development team.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

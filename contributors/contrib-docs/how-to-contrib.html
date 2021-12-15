@@ -1,0 +1,545 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How to Contribute to the Docs &#8212; Minterpy 0.1</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="canonical" href="https://minterpy.readthedocs.io/en/latest/contributors/contrib-docs/how-to-contrib.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Documentation contribution guidelines" href="guidelines/index.html" />
+    <link rel="prev" title="About the Docs" href="about-the-docs.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/minterpy-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../getting-started/index.html">
+  Getting Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../how-to/index.html">
+  How-to
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../fundamentals/index.html">
+  Fundamentals
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../api/index.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  Contributors
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../glossary.html">
+  Glossary
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../code-of-conduct.html">
+   Code of conduct
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contrib-dev/index.html">
+   Development contribution
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Documentation contribution
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="about-the-docs.html">
+     About the Docs
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     How to Contribute to the Docs
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="guidelines/index.html">
+     Documentation contribution guidelines
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="guidelines/rest-based-docs.html">
+       reST-based docs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="guidelines/ipynb-based-docs.html">
+       Jupyter-notebook-based docs
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../about-us.html">
+   About Us
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-to-contribute">
+   What to contribute
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#before-contributing">
+   Before contributing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#docs-source-structure">
+   Docs source structure
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-the-docs-locally">
+   Building the docs locally
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-an-issue-in-the-repository">
+   Creating an issue in the repository
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contributing-directly-to-the-docs">
+   Contributing directly to the docs
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="how-to-contribute-to-the-docs">
+<h1>How to Contribute to the Docs<a class="headerlink" href="#how-to-contribute-to-the-docs" title="Permalink to this headline">¶</a></h1>
+<p>This page describes the ways in you can contribute to the <code class="docutils literal notranslate"><span class="pre">minterpy</span></code> docs.</p>
+<div class="section" id="what-to-contribute">
+<h2>What to contribute<a class="headerlink" href="#what-to-contribute" title="Permalink to this headline">¶</a></h2>
+<p>We value a useful, readable, and consistent docs;
+so we value your contributions to it, small and big.
+Below are some examples of how you can join and help us maintain
+and improve the <code class="docutils literal notranslate"><span class="pre">minterpy</span></code> docs:</p>
+<ul class="simple">
+<li><p><strong>General language improvements</strong>: If you are disturbed by typos, grammatical
+mistakes, or imprecise and misleading writing (we are as well!),
+help us correct them when you find them in the docs.</p></li>
+<li><p><strong>Fixing technical errors</strong>: If you find technical errors in the docs
+such as downright wrong statements, broken links, wrong usage examples,
+or missing parameters in the API reference, let us know about them.</p></li>
+<li><p><strong>Adding new tutorials and how-to guides</strong>: If you think the current docs
+is missing a relevant tutorial or how-to guide, go ahead and suggest it to us.
+Or, you can also create one yourself and contribute to it.</p></li>
+<li><p><strong>Documenting new features</strong>: If you’re developing a new feature for <code class="docutils literal notranslate"><span class="pre">minterpy</span></code>,
+we strongly encourage you to write the docs yourself including some tutorials
+and how-to guides. Note that your eventual feature contribution to the main
+branch of <code class="docutils literal notranslate"><span class="pre">minterpy</span></code> <em>must</em> include the docs. The reviews are carried out
+both for the code and the docs; we value them equally.</p></li>
+</ul>
+<p>When you have a suggestion or thing you want to do to improve the docs,
+you should open an issue in the <code class="docutils literal notranslate"><span class="pre">minterpy</span></code> repository
+(see <a class="reference internal" href="#creating-an-issue-in-the-repository"><span class="std std-ref">Creating an issue in the repository</span></a> below)
+and describe briefly the reasoning.
+This way we can track all the issues regarding the docs as well as your contributions.</p>
+<p>Then you can wait until someone else reviews your suggestion
+(and, if verified, does it for you);
+or you may go ahead make the necessary changes yourself and do a merge request
+(see <a class="reference internal" href="#contributing-directly-to-the-docs"><span class="std std-ref">Contributing directly to the docs</span></a> below).</p>
+</div>
+<div class="section" id="before-contributing">
+<h2>Before contributing<a class="headerlink" href="#before-contributing" title="Permalink to this headline">¶</a></h2>
+<p>Before making your contribution, we encourage you to consider the following:</p>
+<ul class="simple">
+<li><p><strong>Read about how</strong> <a class="reference internal" href="about-the-docs.html"><span class="doc">the docs is designed</span></a>.
+You’ll notice that we try to consistently distinguish four categories of docs:
+tutorials, how-to guides, fundamentals, and API reference.
+We build the docs around these four categories.
+If you’re thinking of adding new content to the docs, think about in which
+category your contribution will fall.</p></li>
+<li><p><strong>Read through some of the existing docs including the source code</strong>.
+This way you can get a feeling of how things are currently organized.
+By looking at the docs source code,
+you’ll get an idea of how a page is structured and the content styled.</p></li>
+<li><p><strong>Check the</strong> <a class="reference external" href="https://gitlab.hzdr.de/interpol/minterpy/-/issues?scope=all&amp;state=opened&amp;label_name[]=docs">issues labeled with docs</a>
+in the <code class="docutils literal notranslate"><span class="pre">minterpy</span></code> repository <a class="reference external" href="https://gitlab.hzdr.de/interpol/minterpy/-/issues">Issue Tracker</a>;
+perhaps someone else has opened an issue similar to yours.
+Second or comment on the issue.</p></li>
+<li><p><strong>Familiarize yourself with</strong> <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>, <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html">reStructuredText (reST)</a>,
+and <a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/stable/notebook.html">Jupyter notebooks</a>.
+As explained in the <a class="reference internal" href="about-the-docs.html#frameworks-and-tools"><span class="std std-ref">About the Docs</span></a>,
+we’re using Sphinx to generate the <code class="docutils literal notranslate"><span class="pre">minterpy</span></code> docs.
+Most of the docs are written in reST, the default markup language for Sphinx.
+However, the tutorials and how-to guides are full of code examples
+and they are written instead as Jupyter notebooks to capture the outputs directly.
+Jupyter notebooks support <a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html">Markdown</a> markup language so you can include narrative text around the codes.
+Depending on which part of the documentation you’d like to contribute to,
+be sure to familiarize yourself with the mechanics of the underlying tools.</p></li>
+</ul>
+</div>
+<div class="section" id="docs-source-structure">
+<h2>Docs source structure<a class="headerlink" href="#docs-source-structure" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">minterpy</span></code> docs source is part of the <code class="docutils literal notranslate"><span class="pre">minterpy</span></code> repository
+and stored in the <a class="reference external" href="https://gitlab.hzdr.de/interpol/minterpy/-/tree/dev/docs"><code class="docutils literal notranslate"><span class="pre">docs</span></code> directory</a>.
+The docs consists of five main (top-level) sections:</p>
+<ul class="simple">
+<li><p>The <a class="reference internal" href="../../getting-started/index.html"><span class="doc">Getting Started Guides</span></a> (<code class="docutils literal notranslate"><span class="pre">getting-started</span></code>)</p></li>
+<li><p>The <a class="reference internal" href="../../how-to/index.html"><span class="doc">How-to Guides</span></a> (<code class="docutils literal notranslate"><span class="pre">how-to</span></code>)</p></li>
+<li><p>The <a class="reference internal" href="../../fundamentals/index.html"><span class="doc">Fundamentals</span></a> (<code class="docutils literal notranslate"><span class="pre">fundamentals</span></code>)</p></li>
+<li><p>The <a class="reference internal" href="../../api/index.html"><span class="doc">API Reference</span></a> (<code class="docutils literal notranslate"><span class="pre">api</span></code>)</p></li>
+<li><p>The <a class="reference internal" href="../index.html"><span class="doc">Contributors Guide</span></a> (<code class="docutils literal notranslate"><span class="pre">contributors</span></code>)</p></li>
+</ul>
+<p>These five sections correspond to the five top-level directories inside the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The main sections are meant to be stable;
+changes at this level change the hierarchy of the information we’d like to present to the readers
+and may require layout modifications as well.
+A new top-level directories within the <code class="docutils literal notranslate"><span class="pre">docs</span></code> should not be added without consulting
+the <code class="docutils literal notranslate"><span class="pre">minterpy</span></code> project maintainers.</p>
+</div>
+<p>Inside each section, contents are organized into <em>Subsections</em> and <em>Pages</em>.
+<em>Pages</em> are individual reStructuredText (reST) document files (with an <code class="docutils literal notranslate"><span class="pre">.rst</span></code> extension);
+<em>Subsections</em> are directories that group topically-related pages together
+and correspond to subsections within one of the top-level sections.</p>
+<p>For example, the <a class="reference internal" href="../index.html"><span class="doc">Contributors Guide</span></a> has subsections such as
+<a class="reference internal" href="../contrib-dev/index.html"><span class="doc">Contributing to the Development</span></a> and <a class="reference internal" href="index.html"><span class="doc">Contributing to the Documentation</span></a>,
+and individual pages such as <a class="reference internal" href="../about-us.html"><span class="doc">About Us</span></a>
+and <a class="reference internal" href="../code-of-conduct.html"><span class="doc">Code of conduct</span></a>.
+The docs source reflect that structure as shown below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docs</span>
+<span class="o">|---</span> <span class="n">api</span>
+<span class="o">|---</span> <span class="n">contributors</span>
+<span class="o">|</span>    <span class="o">|---</span> <span class="n">contrib</span><span class="o">-</span><span class="n">dev</span>
+<span class="o">|</span>    <span class="o">|---</span> <span class="n">contrib</span><span class="o">-</span><span class="n">docs</span>
+<span class="o">|</span>    <span class="o">|---</span> <span class="n">about</span><span class="o">-</span><span class="n">us</span><span class="o">.</span><span class="n">rst</span>
+<span class="o">|</span>    <span class="o">|---</span> <span class="n">code</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">conduct</span><span class="o">.</span><span class="n">rst</span>
+<span class="o">|</span>    <span class="o">|---</span> <span class="n">index</span><span class="o">.</span><span class="n">rst</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>The file <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> in the top <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory is the main index (root)
+file of the docs.
+This file defines what you see when you navigate
+to the <code class="docutils literal notranslate"><span class="pre">minterpy</span></code> <a class="reference internal" href="../../index.html"><span class="doc">docs homepage</span></a>.
+Each of the main sections also has its own index file that serves
+as the main page of the section;
+it lists all the pages that belong to that section.
+Some of the subsections inside the main sections may contain
+their own index file as well.</p>
+</div>
+<div class="section" id="building-the-docs-locally">
+<h2>Building the docs locally<a class="headerlink" href="#building-the-docs-locally" title="Permalink to this headline">¶</a></h2>
+<p>To build the <code class="docutils literal notranslate"><span class="pre">minterpy</span></code> docs locally,
+make sure you’ve cloned a version of <code class="docutils literal notranslate"><span class="pre">minterpy</span></code> from the repository,
+installed it in your system, including all the requirements for the docs.
+You can install the docs requirements from your local <code class="docutils literal notranslate"><span class="pre">minterpy</span></code> source directory
+by:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install .<span class="o">[</span>docs<span class="o">]</span>
+</pre></div>
+</div>
+<p>in Linux or macOS, and:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span><span class="p">:</span>\<span class="o">&gt;</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">.</span><span class="p">[</span><span class="n">docs</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>in Windows.</p>
+<p>Then from the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory, build the HTML docs by invoking the <code class="docutils literal notranslate"><span class="pre">make</span></code> command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ make html
+</pre></div>
+</div>
+<p>in Linux or macOS, and:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span><span class="p">:</span>\<span class="o">&gt;</span> <span class="n">make</span><span class="o">.</span><span class="n">bat</span> <span class="n">html</span>
+</pre></div>
+</div>
+<p>in Windows.</p>
+<p>If you’re making modifications to the docs, you need to invoke
+the <code class="docutils literal notranslate"><span class="pre">make</span></code> command every time.
+It may be useful to clean the built directory from time to time by invoking
+the following command from the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ make clean
+</pre></div>
+</div>
+<p>in Linux or macOS, and:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span><span class="p">:</span>\<span class="o">&gt;</span> <span class="n">make</span><span class="o">.</span><span class="n">bat</span> <span class="n">clean</span>
+</pre></div>
+</div>
+<p>in Windows.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you don’t see your source modifications (after saving them) in the HTML docs,
+do this cleaning as a first troubleshooting step.</p>
+</div>
+<p>While you’re working with the docs, you might prefer to have a live-reload.
+You can use <a class="reference external" href="https://github.com/executablebooks/sphinx-autobuild">sphinx-autobuild</a> (part of the docs requirements) to automatically
+rebuild the HTML docs on source changes.
+You need to invoke the following command
+from the main <code class="docutils literal notranslate"><span class="pre">minterpy</span></code> source directory
+(<em>not</em> from the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory; it’s one level above it):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sphinx-autobuild docs ./docs/build/html
+</pre></div>
+</div>
+<p>in Linux or mac OS, and:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span><span class="p">:</span>\<span class="o">&gt;</span> <span class="n">sphinx</span><span class="o">-</span><span class="n">autobuild</span> <span class="n">docs</span> <span class="o">.</span>\<span class="n">docs</span>\<span class="n">build</span>\<span class="n">html</span>
+</pre></div>
+</div>
+<p>in Windows.</p>
+<p>This will start a local server accessible at the shown address;
+open the address in your web browser.
+sphinx-autobuild watches for any changes in the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory;
+when it detects them, it rebuilds the docs automatically.</p>
+</div>
+<div class="section" id="creating-an-issue-in-the-repository">
+<h2>Creating an issue in the repository<a class="headerlink" href="#creating-an-issue-in-the-repository" title="Permalink to this headline">¶</a></h2>
+<p>Whether you have a suggestion about the docs or you want to change the docs directly,
+you should start by creating a new issue in the <a class="reference external" href="https://gitlab.hzdr.de/interpol/minterpy/-/issues">Issue Tracker</a> of the <code class="docutils literal notranslate"><span class="pre">minterpy</span></code> <a class="reference external" href="https://gitlab.hzdr.de/interpol/minterpy">repository</a>.</p>
+<div class="figure align-center" id="id2">
+<img alt="../../_images/issue-tracker-docs.png" src="../../_images/issue-tracker-docs.png" />
+<p class="caption"><span class="caption-text">Open a new issue regarding the docs in the <a class="reference external" href="https://gitlab.hzdr.de/interpol/minterpy/-/issues">Issue Tracker</a>;
+make sure you’ve checked the already created issues regarding the docs by
+using the label filter.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>Provide your issue with a descriptive title and then fill in the description
+of the issue with the following (at the very least):</p>
+<ul class="simple">
+<li><p>The docs section (and, when applicable, the page) where the problem occurs
+or your suggestions apply to.</p></li>
+<li><p>A proposed solution.</p></li>
+</ul>
+<div class="figure align-center" id="id3">
+<img alt="../../_images/new-issue-docs.png" src="../../_images/new-issue-docs.png" />
+<p class="caption"><span class="caption-text">Fill in the new issue form; give a descriptive title, briefly describe
+the problem or your suggestions about the doc, and write a possible solution.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>Finally, don’t forget to assign “Issue” as the <strong>Type</strong> and “Docs” as the <strong>Label</strong>
+before you click on the <strong>Create Issue</strong> button.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Creating an issue does not mean you’re responsible for actually doing it
+(unless you want to)!
+Someone else in the project will verify your issue
+and, if verified, does it for you.
+If you want to do it,
+then assign the issue to yourself using the <strong>Assignee</strong> field.</p>
+</div>
+</div>
+<div class="section" id="contributing-directly-to-the-docs">
+<h2>Contributing directly to the docs<a class="headerlink" href="#contributing-directly-to-the-docs" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>This section is still empty. It should synchronize well with the
+contribution to the codebase because they are very similar.
+Refer as much as possible to the corresponding section in the contribution
+to the development.</p>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="about-the-docs.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">About the Docs</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="guidelines/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Documentation contribution guidelines</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Minterpy development team.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

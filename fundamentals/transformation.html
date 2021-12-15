@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transformation between bases &#8212; Minterpy 0.1</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="canonical" href="https://minterpy.readthedocs.io/en/latest/fundamentals/transformation.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Barycentric transformation" href="barycentric-transformation.html" />
+    <link rel="prev" title="Multivariate divided difference scheme (DDS)" href="multivariate-dds.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/minterpy-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../getting-started/index.html">
+  Getting Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../how-to/index.html">
+  How-to
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  Fundamentals
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../api/index.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../contributors/index.html">
+  Contributors
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../glossary.html">
+  Glossary
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="polynomial-bases.html">
+   Multivariate polynomial bases
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="interpolation-in-unisolvent-nodes.html">
+   Interpolation in unisolvent nodes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="interpolation-evaluation.html">
+   Evaluation of multivariate polynomials
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multivariate-dds.html">
+   Multivariate divided difference scheme (DDS)
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Transformation between bases
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="barycentric-transformation.html">
+   Barycentric transformation
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="transformation-between-bases">
+<h1>Transformation between bases<a class="headerlink" href="#transformation-between-bases" title="Permalink to this headline">¶</a></h1>
+<p>In case the multivariate polynomial <span class="math notranslate nohighlight">\(Q \in \Pi_A\)</span>, <span class="math notranslate nohighlight">\(A \subseteq \mathbb{N}^m\)</span>, is given in either of the considered (canonical, Newton or Lagrange bases)
+on may asks for transforming it into another representation in order to benefit from the corresponding properties e.g. interpretability of <strong>canonical polynomials</strong>, <strong>fast evaluation of Newton polynomials</strong>
+and approximation analysis for <strong>Lagrange polynomials</strong>. Here, we sketch how the transformations arise and are realised in <code class="docutils literal notranslate"><span class="pre">minterpy</span></code>.</p>
+<p><strong>Theorem 1 (Transformations)</strong> Let <span class="math notranslate nohighlight">\(A= A_{m,n,p}\,, m,n \in \mathbb{N}\,, p\geq 1\)</span> be a <strong>multi-index set</strong> and <span class="math notranslate nohighlight">\(P_A\subseteq \Omega\)</span> be  unisolvent nodes and <span class="math notranslate nohighlight">\(Q\in \Pi_A\)</span> be a polynomial. Then:</p>
+<p><span class="math notranslate nohighlight">\(i)\)</span> Lower triangular matrices  <span class="math notranslate nohighlight">\(\mathrm{NL}_A, \mathrm{LN}_A  \in \mathbb{R}^{|A|\times |A|}\)</span>  can be computed in <span class="math notranslate nohighlight">\(\mathcal{O}(|A|^3)\)</span> operations, such that</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{LN}_A \cdot\mathrm{NL}_A = \mathrm{I} \,, \quad \mathrm{NL}_A  \cdot C_{\mathrm{Newt}} = C_{\mathrm{Lag}}\,, \quad   \mathrm{LN}_A\cdot C_{\mathrm{Lag}} = C_{\mathrm{Newt}} \,,\]</div>
+<p>where <span class="math notranslate nohighlight">\(C_{\mathrm{Lag}}=(c_{\alpha})_{\alpha \in A}\in \mathbb{R}^{|A|}\)</span> are the <strong>Lagrange coefficients</strong> of <span class="math notranslate nohighlight">\(Q\)</span> and <span class="math notranslate nohighlight">\(C_{\mathrm{Newt}}=(d_\alpha)_{\alpha \in A} \in \mathbb{R}^A\)</span> are the <strong>Newton coefficients</strong> of <span class="math notranslate nohighlight">\(Q\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(ii)\)</span> Upper triangular matrices <span class="math notranslate nohighlight">\(\mathrm{CL}_A,\mathrm{CN}_A \in \mathbb{R}^{|A|\times |A|}\)</span> can be computed in <span class="math notranslate nohighlight">\(\mathcal{O}(|A|^3)\)</span> operations, such that</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{CL}_A\cdot C_{\mathrm{can}} =C_{\mathrm{Lag}}\,, \quad \mathrm{CN}_A\cdot C_{\mathrm{can}} =C_{\mathrm{Newt}}\,,\]</div>
+<p>where <span class="math notranslate nohighlight">\(C_{\mathrm{can}}=(d_{\alpha})_{\alpha \in A}  \in \mathbb{R}^{|A|}\)</span> denotes the  <strong>canonical coefficients</strong> of <span class="math notranslate nohighlight">\(Q\)</span>.</p>
+<p>Due to their triangualrity, the inverse matrices <span class="math notranslate nohighlight">\(\mathrm{NC}_A =\mathrm{CN}_A^{-1}\)</span>, <span class="math notranslate nohighlight">\(\mathrm{LC}_A =\mathrm{CL}_A^{-1}\)</span> can be computed in <span class="math notranslate nohighlight">\(\mathcal{O}(|A|^2)\)</span>,
+efficiently and accurately, yielding realisations of the inverse transformations.</p>
+<p>If the <strong>unisolvent nodes</strong> <span class="math notranslate nohighlight">\(P_A\)</span> are fixed, all matrices can be precomputed.
+The columns of <span class="math notranslate nohighlight">\(\mathrm{NL}_A\)</span> are given by <strong>evaluating the Newton polynomials</strong> on the unisolvent nodes, i.e,</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{NL}_A = (N_{\alpha}(p_\beta))_{\beta,\alpha \in A} \in \mathbb{R}^{|A|\times |A|}\,.\]</div>
+<p>Thereby, Theorem 1 enables efficient and numerically accurate computation.
+Vice versa, the <strong>multivariate DDS scheme</strong> can be used to interpolate the
+<strong>Lagrange polynomials</strong> <span class="math notranslate nohighlight">\(L_{\alpha} = \sum_{\beta\in A}d_{\alpha,\beta}N_{\beta}\)</span>, <span class="math notranslate nohighlight">\(\alpha \in A\)</span> in Newton form, yielding the columns of
+<span class="math notranslate nohighlight">\(\mathrm{LN}_A\)</span>, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{LN}_A = (d_{\alpha,\beta})_{\beta,\alpha \in A} \in \mathbb{R}^{|A|\times |A|}\,.\]</div>
+<p>Further,</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{CL}_A =(x^\alpha(p_{\beta}))_{\alpha,\beta \in A} \in \mathbb{R}^{|A|\times|A|}\]</div>
+<p>coincides with the classic <em>Vandermonde matrix</em><a class="footnote-reference brackets" href="#footcite-gautschi2012" id="id1">1</a> and the columns of <span class="math notranslate nohighlight">\(\mathrm{CN}_A\)</span> are given by applying <strong>DDS</strong> to the canonical basis <span class="math notranslate nohighlight">\(x^\alpha\)</span>.
+In fact, all matrices are of recursive triangular sparse structure, which allows numerical accurate precomputation of the occurring sub-matrices, avoiding storage issues.</p>
+<p>Consequently, the explicit structure of the matrices can be condensed into <strong>barycentric transformations</strong> performing much faster than classic matrix multiplication, resulting in
+fast polynomial interpolation and  polynomial evaluation. A preliminary implementation of these
+fast <strong>barycentric transformations</strong> is already used in <code class="docutils literal notranslate"><span class="pre">minterpy</span></code>.</p>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p id="id2"><dl class="footnote brackets">
+<dt class="label" id="footcite-gautschi2012"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Walter Gautschi. <em>Numerical analysis</em>. Birkhäuser Boston, 2012. <a class="reference external" href="https://doi.org/10.1007/978-0-8176-8259-0">doi:10.1007/978-0-8176-8259-0</a>.</p>
+</dd>
+</dl>
+</p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="multivariate-dds.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Multivariate divided difference scheme (DDS)</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="barycentric-transformation.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Barycentric transformation</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Minterpy development team.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

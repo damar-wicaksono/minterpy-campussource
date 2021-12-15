@@ -1,0 +1,676 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>From Canonical basis &#8212; Minterpy 0.1</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="canonical" href="https://minterpy.readthedocs.io/en/latest/api/transformations/transformationCanonical.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="From Newton basis" href="transformationNewton.html" />
+    <link rel="prev" title="Polynomial Transformation classes" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/minterpy-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../getting-started/index.html">
+  Getting Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../how-to/index.html">
+  How-to
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../fundamentals/index.html">
+  Fundamentals
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../contributors/index.html">
+  Contributors
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../glossary.html">
+  Glossary
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../interpolation/index.html">
+   Interpolation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../interpolation/interpolate.html">
+     interpolate function
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../interpolation/interpolant.html">
+     Interpolant class
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../interpolation/interpolator.html">
+     Interpolator class
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../core/index.html">
+   Core modules
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../core/multi_index.html">
+     Multi index sets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../core/grid.html">
+     Grid
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../core/tree.html">
+     Multi index tree
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../core/ABC/index.html">
+     Abstract base classes
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../core/ABC/polyABC.html">
+       Multivariate polynomial ABC
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../core/ABC/trafoABC.html">
+       Transformation ABC
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../core/ABC/operatorABC.html">
+       Operator ABC
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../polyBases/index.html">
+   Polynomial Base classes
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../polyBases/canonical.html">
+     Canonical Polynomial Base
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../polyBases/newton.html">
+     Newton Polynomial Base
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../polyBases/lagrange.html">
+     Lagrange Polynomial Base
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Polynomial Transformation classes
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     From Canonical basis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="transformationNewton.html">
+     From Newton basis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="transformationLagrange.html">
+     From Lagrange basis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="transformationIdentity.html">
+     Identity transformation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="interface.html">
+     Helper functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../transformOperators/index.html">
+   Transformation Operator classes
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformOperators/barycentricOp.html">
+     Barycentric Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformOperators/matrixTransform.html">
+     Matrix Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformOperators/barycentricDictTransform.html">
+     Barycentric Dict Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformOperators/barycentricFactorisedTransform.html">
+     Barycentric Factorised Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformOperators/barycentricPiecewiseTransform.html">
+     Barycentric Piecewise Operator
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../internal/index.html">
+   Internal API
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internal/utils.html">
+     utility functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internal/coreutils.html">
+     core utility functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internal/trafoutils.html">
+     transformation utility functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internal/verification.html">
+     verification functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internal/jit_compiled_utils.html">
+     numba accelerated utility functions
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="module-minterpy.transformations.canonical">
+<span id="from-canonical-basis"></span><h1>From Canonical basis<a class="headerlink" href="#module-minterpy.transformations.canonical" title="Permalink to this headline">¶</a></h1>
+<p>Concrete implementations of the Transformation classes for the CanonicalPolynomial.</p>
+<p>Transformations from Canonical basis to Newton and Lagrange basis are provided.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToNewton">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">minterpy.transformations.canonical.</span></span><span class="sig-name descname"><span class="pre">CanonicalToNewton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">origin_poly</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC"><span class="pre">minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToNewton" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../core/ABC/trafoABC.html#minterpy.core.ABC.transformation_abstract.TransformationABC" title="minterpy.core.ABC.transformation_abstract.TransformationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">minterpy.core.ABC.transformation_abstract.TransformationABC</span></code></a></p>
+<p>Transformation from CanonicalPolynomial to NewtonPolynomial</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToNewton.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">origin_poly</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC"><span class="pre">minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToNewton.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transformation of polynomial.</p>
+<p>This function is called when an instance of transformation is called <code class="docutils literal notranslate"><span class="pre">T()</span></code> or <code class="docutils literal notranslate"><span class="pre">T(x)</span></code>. If called without
+any arguments, the transformation is applied on the origin_poly used to construct the transformation. If an
+argument is passed, the transformation is applied on the instance passed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>origin_poly</strong> – (optional)  an instance of the polynomial to be transformed.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>an instance of the polynomial in the target basis.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToNewton.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">origin_poly</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC"><span class="pre">minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToNewton.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToNewton.__init_subclass__">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">__init_subclass__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToNewton.__init_subclass__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a concrete implementation to the registry of available transformations</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToNewton.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToNewton.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToNewton._apply_transformation">
+<span class="sig-name descname"><span class="pre">_apply_transformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">origin_poly</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToNewton._apply_transformation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms the polynomial to the target type of the transformation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>origin_poly</strong> – instance of the polynomial to be transformed</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>an instance of the transformed polynomial in the target basis</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToNewton._get_transformation_operator">
+<span class="sig-name descname"><span class="pre">_get_transformation_operator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../transformOperators/matrixTransform.html#minterpy.schemes.matrix_operator.MatrixOperator" title="minterpy.schemes.matrix_operator.MatrixOperator"><span class="pre">minterpy.schemes.matrix_operator.MatrixOperator</span></a></span></span><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToNewton._get_transformation_operator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract container for storing the transformation operator.</p>
+<p>This is a placeholder of the ABC, which is overwritten by the concrete implementation.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToNewton._target_indices">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">_target_indices</span></span><em class="property"><span class="pre">:</span> <a class="reference internal" href="../core/multi_index.html#minterpy.core.multi_index.MultiIndexSet" title="minterpy.core.multi_index.MultiIndexSet"><span class="pre">minterpy.core.multi_index.MultiIndexSet</span></a></em><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToNewton._target_indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>The MultiIndexSet of the target_poly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the indices the target polynomial will have</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToNewton.grid">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">grid</span></span><em class="property"><span class="pre">:</span> <a class="reference internal" href="../core/grid.html#minterpy.core.grid.Grid" title="minterpy.core.grid.Grid"><span class="pre">minterpy.core.grid.Grid</span></a></em><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToNewton.grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>The grid of the origin polynomial.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToNewton.multi_index">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">multi_index</span></span><em class="property"><span class="pre">:</span> <a class="reference internal" href="../core/multi_index.html#minterpy.core.multi_index.MultiIndexSet" title="minterpy.core.multi_index.MultiIndexSet"><span class="pre">minterpy.core.multi_index.MultiIndexSet</span></a></em><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToNewton.multi_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>The multi index set of the origin polynomial (and also the target polynomial).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToNewton.origin_type">
+<span class="sig-name descname"><span class="pre">origin_type</span></span><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToNewton.origin_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="../polyBases/canonical.html#minterpy.polynomials.canonical_polynomial.CanonicalPolynomial" title="minterpy.polynomials.canonical_polynomial.CanonicalPolynomial"><code class="xref py py-class docutils literal notranslate"><span class="pre">minterpy.polynomials.canonical_polynomial.CanonicalPolynomial</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToNewton.target_type">
+<span class="sig-name descname"><span class="pre">target_type</span></span><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToNewton.target_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="../polyBases/newton.html#minterpy.polynomials.newton_polynomial.NewtonPolynomial" title="minterpy.polynomials.newton_polynomial.NewtonPolynomial"><code class="xref py py-class docutils literal notranslate"><span class="pre">minterpy.polynomials.newton_polynomial.NewtonPolynomial</span></code></a></p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToNewton.transformation_operator">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">transformation_operator</span></span><em class="property"><span class="pre">:</span> <a class="reference internal" href="../core/ABC/operatorABC.html#minterpy.core.ABC.operator_abstract.OperatorABC" title="minterpy.core.ABC.operator_abstract.OperatorABC"><span class="pre">minterpy.core.ABC.operator_abstract.OperatorABC</span></a></em><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToNewton.transformation_operator" title="Permalink to this definition">¶</a></dt>
+<dd><p>The polynomial basis transformation operator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>instance of the transformation operator</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The transformation operator once constructed can be reused for transforming other polynomial instance of the
+origin_poly type, which have the same basis (and grid) as the origin_poly, to the target_poly type.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToLagrange">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">minterpy.transformations.canonical.</span></span><span class="sig-name descname"><span class="pre">CanonicalToLagrange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">origin_poly</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC"><span class="pre">minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToLagrange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../core/ABC/trafoABC.html#minterpy.core.ABC.transformation_abstract.TransformationABC" title="minterpy.core.ABC.transformation_abstract.TransformationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">minterpy.core.ABC.transformation_abstract.TransformationABC</span></code></a></p>
+<p>Transformation from CanonicalPolynomial to LagrangePolynomial</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToLagrange.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">origin_poly</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC"><span class="pre">minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToLagrange.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transformation of polynomial.</p>
+<p>This function is called when an instance of transformation is called <code class="docutils literal notranslate"><span class="pre">T()</span></code> or <code class="docutils literal notranslate"><span class="pre">T(x)</span></code>. If called without
+any arguments, the transformation is applied on the origin_poly used to construct the transformation. If an
+argument is passed, the transformation is applied on the instance passed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>origin_poly</strong> – (optional)  an instance of the polynomial to be transformed.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>an instance of the polynomial in the target basis.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToLagrange.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">origin_poly</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC"><span class="pre">minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToLagrange.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToLagrange.__init_subclass__">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">__init_subclass__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToLagrange.__init_subclass__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a concrete implementation to the registry of available transformations</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToLagrange.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToLagrange.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToLagrange._apply_transformation">
+<span class="sig-name descname"><span class="pre">_apply_transformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">origin_poly</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToLagrange._apply_transformation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms the polynomial to the target type of the transformation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>origin_poly</strong> – instance of the polynomial to be transformed</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>an instance of the transformed polynomial in the target basis</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToLagrange._get_transformation_operator">
+<span class="sig-name descname"><span class="pre">_get_transformation_operator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../core/ABC/operatorABC.html#minterpy.core.ABC.operator_abstract.OperatorABC" title="minterpy.core.ABC.operator_abstract.OperatorABC"><span class="pre">minterpy.core.ABC.operator_abstract.OperatorABC</span></a></span></span><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToLagrange._get_transformation_operator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract container for storing the transformation operator.</p>
+<p>This is a placeholder of the ABC, which is overwritten by the concrete implementation.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToLagrange._target_indices">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">_target_indices</span></span><em class="property"><span class="pre">:</span> <a class="reference internal" href="../core/multi_index.html#minterpy.core.multi_index.MultiIndexSet" title="minterpy.core.multi_index.MultiIndexSet"><span class="pre">minterpy.core.multi_index.MultiIndexSet</span></a></em><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToLagrange._target_indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>The MultiIndexSet of the target_poly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the indices the target polynomial will have</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToLagrange.grid">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">grid</span></span><em class="property"><span class="pre">:</span> <a class="reference internal" href="../core/grid.html#minterpy.core.grid.Grid" title="minterpy.core.grid.Grid"><span class="pre">minterpy.core.grid.Grid</span></a></em><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToLagrange.grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>The grid of the origin polynomial.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToLagrange.multi_index">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">multi_index</span></span><em class="property"><span class="pre">:</span> <a class="reference internal" href="../core/multi_index.html#minterpy.core.multi_index.MultiIndexSet" title="minterpy.core.multi_index.MultiIndexSet"><span class="pre">minterpy.core.multi_index.MultiIndexSet</span></a></em><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToLagrange.multi_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>The multi index set of the origin polynomial (and also the target polynomial).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToLagrange.origin_type">
+<span class="sig-name descname"><span class="pre">origin_type</span></span><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToLagrange.origin_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="../polyBases/canonical.html#minterpy.polynomials.canonical_polynomial.CanonicalPolynomial" title="minterpy.polynomials.canonical_polynomial.CanonicalPolynomial"><code class="xref py py-class docutils literal notranslate"><span class="pre">minterpy.polynomials.canonical_polynomial.CanonicalPolynomial</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToLagrange.target_type">
+<span class="sig-name descname"><span class="pre">target_type</span></span><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToLagrange.target_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="../polyBases/lagrange.html#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial" title="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial"><code class="xref py py-class docutils literal notranslate"><span class="pre">minterpy.polynomials.lagrange_polynomial.LagrangePolynomial</span></code></a></p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="minterpy.transformations.canonical.CanonicalToLagrange.transformation_operator">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">transformation_operator</span></span><em class="property"><span class="pre">:</span> <a class="reference internal" href="../core/ABC/operatorABC.html#minterpy.core.ABC.operator_abstract.OperatorABC" title="minterpy.core.ABC.operator_abstract.OperatorABC"><span class="pre">minterpy.core.ABC.operator_abstract.OperatorABC</span></a></em><a class="headerlink" href="#minterpy.transformations.canonical.CanonicalToLagrange.transformation_operator" title="Permalink to this definition">¶</a></dt>
+<dd><p>The polynomial basis transformation operator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>instance of the transformation operator</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The transformation operator once constructed can be reused for transforming other polynomial instance of the
+origin_poly type, which have the same basis (and grid) as the origin_poly, to the target_poly type.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Polynomial Transformation classes</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="transformationNewton.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">From Newton basis</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Minterpy development team.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

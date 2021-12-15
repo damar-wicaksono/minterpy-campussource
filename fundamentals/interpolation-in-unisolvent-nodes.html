@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interpolation in unisolvent nodes &#8212; Minterpy 0.1</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="canonical" href="https://minterpy.readthedocs.io/en/latest/fundamentals/interpolation-in-unisolvent-nodes.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Evaluation of multivariate polynomials" href="interpolation-evaluation.html" />
+    <link rel="prev" title="Multivariate polynomial bases" href="polynomial-bases.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/minterpy-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../getting-started/index.html">
+  Getting Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../how-to/index.html">
+  How-to
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  Fundamentals
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../api/index.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../contributors/index.html">
+  Contributors
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../glossary.html">
+  Glossary
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="polynomial-bases.html">
+   Multivariate polynomial bases
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Interpolation in unisolvent nodes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="interpolation-evaluation.html">
+   Evaluation of multivariate polynomials
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multivariate-dds.html">
+   Multivariate divided difference scheme (DDS)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformation.html">
+   Transformation between bases
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="barycentric-transformation.html">
+   Barycentric transformation
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generating-nodes">
+   Generating nodes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unisolvent-nodes">
+   Unisolvent nodes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lagrange-interpolation">
+   Lagrange interpolation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#newton-interpolation">
+   Newton interpolation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="interpolation-in-unisolvent-nodes">
+<h1>Interpolation in unisolvent nodes<a class="headerlink" href="#interpolation-in-unisolvent-nodes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="generating-nodes">
+<h2>Generating nodes<a class="headerlink" href="#generating-nodes" title="Permalink to this headline">¶</a></h2>
+<p>The generating nodes are given by choosing arbitrary sets <span class="math notranslate nohighlight">\(P_i \subseteq [-1,1]\)</span> of <span class="math notranslate nohighlight">\(n_i=|P_i| \in \mathbb{N}\)</span> nodes for each dimension <span class="math notranslate nohighlight">\(m \in \mathbb{N}\)</span> such that
+for fixed  <strong>multi-index set</strong> <span class="math notranslate nohighlight">\(A\subseteq \mathbb{N}\)</span> there holds   <span class="math notranslate nohighlight">\(n_i \geq \max \{\alpha_i : \alpha \in A\}\)</span>.</p>
+<p>Whenever <span class="math notranslate nohighlight">\(A = A_{m,n,p}\)</span> is given by a multi-index set of specified degree then
+by default the nodes are chosen to be the <strong>Chebyshev-Lobatto nodes</strong></p>
+<div class="math notranslate nohighlight" id="equation-eq-cheb">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-cheb" title="Permalink to this equation">¶</a></span>\[P_i =\{p_{0,i},\dots,p_{n,i}\} = (-1)^m \mathrm{Cheb}_n = \left\{ \cos(k\pi/n) :  0 \leq k \leq n\right\}\]</div>
+<p>Apart from <strong>equidistant nodes</strong> other prominent choices of generating nodes are given by the <strong>Gauss-Legendre nodes, Chebyshev nodes of first &amp; second kind, equidistant nodes, etc.</strong>,
+see e.g.<a class="footnote-reference brackets" href="#footcite-stoer2002" id="id1">1</a><a class="footnote-reference brackets" href="#footcite-trefethen2019" id="id2">2</a><a class="footnote-reference brackets" href="#footcite-gautschi2012" id="id3">3</a>.
+For treating the generating nodes in a compactified way they are implemented as an array</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{GP} = \oplus_{i=1}^m P_i\,.\]</div>
+<p>Crucial is the choice of the ordering of the node sets <span class="math notranslate nohighlight">\(P_i\)</span>.
+By default we assume that the generating nodes <span class="math notranslate nohighlight">\(\mathrm{GP}\)</span>
+are <strong>Leja-ordered</strong><a class="footnote-reference brackets" href="#footcite-leja1957" id="id4">4</a>, i.e, there holds:</p>
+<div class="math notranslate nohighlight">
+\[|p_0| = \max_{p \in P}|p|\,, \quad \prod_{i=0}^{j-1}|p_j-p_i| = \max_{j\leq k\leq m} \prod_{i=0}^{j-1}|p_k-p_i|\,,\quad 1 \leq j \leq n\,.\]</div>
+<p>The Leja ordering does not only guarantee numerical stability of the <strong>Newton interpolation</strong> realised in the
+<strong>multivariate DDS</strong> but also makes the resulting <strong>unisolvent nodes</strong> to be a (sparse, non-tensorial) grid of high approximation power.</p>
+</div>
+<div class="section" id="unisolvent-nodes">
+<h2>Unisolvent nodes<a class="headerlink" href="#unisolvent-nodes" title="Permalink to this headline">¶</a></h2>
+<p>For  <strong>multi-index set</strong> <span class="math notranslate nohighlight">\(A \subseteq \mathbb{N}^m\)</span> and chosen <strong>generating nodes</strong> <span class="math notranslate nohighlight">\(\mathrm{GP} = \oplus_{i=1}^m P_i\)</span> the unisolvent nodes are given as the sub-grid</p>
+<div class="math notranslate nohighlight">
+\[P_A = \left\{ p_\alpha = (p_{\alpha_1,1},\ldots,p_{\alpha_m,m}) \in \Omega\subseteq \mathbb{R}^m : \alpha \in A\right\}\,, \quad p_{\alpha_i,i} \in P_i\,.\]</div>
+<p>In addition to the possible different choices of the <span class="math notranslate nohighlight">\(P_i\)</span> in each dimension the impact of different orderings can be observed in the example below.
+Thereby, the <span class="math notranslate nohighlight">\(P_i\)</span> just differ in their orderings that are indicated by enumerations along the dimensions (<span class="math notranslate nohighlight">\(x,y\)</span>). The resulting unisolvent nodes
+may be given by <em>non-tensorial or non-symmetric grids</em>, where nodes exist with <span class="math notranslate nohighlight">\(p=(p_x,p_y) \in P_A\)</span>, but <span class="math notranslate nohighlight">\((p_y,p_x)\not \in P_A\)</span>.</p>
+<div class="figure align-center" id="id8">
+<img alt="../_images/UN1.png" src="../_images/UN1.png" />
+<p class="caption"><span class="caption-text">Unisolvent nodes for <span class="math notranslate nohighlight">\(A= A_{2,3,1}\)</span> (left, middle) and <span class="math notranslate nohighlight">\(A_{2,3,2}\)</span> (right). Orderings in <span class="math notranslate nohighlight">\(x,y\)</span>–directions are indicated by numbers and non-tensorial nodes  <span class="math notranslate nohighlight">\(p=(p_x,p_y) \in P_A\)</span> in red with missing symmetric
+blank counter parts <span class="math notranslate nohighlight">\((p_y,p_x)\not \in P_A\)</span>.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+<p>Examples of unisolvent nodes in 2D &amp; 3D for the default choice of Leja ordered Chebyshev-Lobatto nodes given in <a class="reference internal" href="#equation-eq-cheb">Eq. (1)</a> are visulaised below.</p>
+<div class="figure align-center" id="id9">
+<img alt="../_images/Nodes.png" src="../_images/Nodes.png" />
+<p class="caption"><span class="caption-text">Leja ordered Chebyshev-Lobatto nodes for Euclidian <span class="math notranslate nohighlight">\(l_2\)</span>-degree <span class="math notranslate nohighlight">\(n=5\)</span>.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+<p>From a general perspective, a deeper discussion of their construction
+and resulting properties is given in<a class="footnote-reference brackets" href="#footcite-hecht2020" id="id5">5</a>. Most crucial is the fact that for downward closed multi-index sets <span class="math notranslate nohighlight">\(A\subseteq \mathbb{N}^m\)</span>
+the interpolant <span class="math notranslate nohighlight">\(Q_{f,A}\)</span> is uniquely determined in the <strong>polynomial space</strong></p>
+<div class="math notranslate nohighlight">
+\[\Pi_A =\left&lt;x^\alpha = x_1^{\alpha_1}\cdots x_m^{\alpha_m} : \alpha \in A\right&gt;\]</div>
+<p>spanned by all <strong>canonical</strong> monimials.</p>
+</div>
+<div class="section" id="lagrange-interpolation">
+<h2>Lagrange interpolation<a class="headerlink" href="#lagrange-interpolation" title="Permalink to this headline">¶</a></h2>
+<p>Given a set of multi-indices <span class="math notranslate nohighlight">\(A \subseteq \mathbb{N}^m\,, m \in \mathbb{N}\)</span>, unsisolvent nodes <span class="math notranslate nohighlight">\(P_A \subseteq \Omega = [-1,1]^m\)</span>
+and a function <span class="math notranslate nohighlight">\(f: \Omega\longrightarrow \mathbb{R}\)</span> the uniquely determined  Lagrange interpolant <span class="math notranslate nohighlight">\(Q_{f,A}\)</span> of <span class="math notranslate nohighlight">\(f\)</span>
+is given by</p>
+<div class="math notranslate nohighlight">
+\[Q_{f,A}(x) = \sum_{\alpha \in A}f(p_{\alpha})L_{\alpha}(x)\,, \quad p_{\alpha} \in P_A\,,\]</div>
+<p>where <span class="math notranslate nohighlight">\(L_\alpha\)</span> denote the <strong>Lagrange polynomials</strong> satisfying <span class="math notranslate nohighlight">\(L_{\alpha}(p_\beta) = \delta_{\alpha,\beta}\)</span> with
+<span class="math notranslate nohighlight">\(\delta_{\cdot,\cdot}\)</span> denoting the <strong>Kronecker delta</strong>. In fact, deriving the Lagrange interpolant <span class="math notranslate nohighlight">\(Q_{f,A}\)</span> of a function <span class="math notranslate nohighlight">\(f\)</span> is trivial and can be executed with linear  <span class="math notranslate nohighlight">\(\mathcal{O}(|A|)\)</span>
+storage amount and runtime complexity whenever the unisolvent nodes <span class="math notranslate nohighlight">\(P_A\)</span> are given. However, Lagrange interpolation is a rather theoretical concept
+while it does not provide a computational scheme for evaluating the interpolant <span class="math notranslate nohighlight">\(Q_{f,A}\)</span> in any given argument <span class="math notranslate nohighlight">\(y \in \Omega\)</span>.</p>
+</div>
+<div class="section" id="newton-interpolation">
+<h2>Newton interpolation<a class="headerlink" href="#newton-interpolation" title="Permalink to this headline">¶</a></h2>
+<p>In contrast to Lagrange interpolation, Newton interpolation derives the uniquely determined Newton interpolant <span class="math notranslate nohighlight">\(Q_{f,A}\)</span> of <span class="math notranslate nohighlight">\(f\)</span>
+given by</p>
+<div class="math notranslate nohighlight">
+\[Q_{f,A}(x) = \sum_{\alpha \in A}c_\alpha N_{\alpha}(x)\,, \quad \alpha \in A\,,\]</div>
+<p>where <span class="math notranslate nohighlight">\(A \subseteq \mathbb{N}^m\)</span> is a set of multi-indices, <span class="math notranslate nohighlight">\(P_A \subseteq \Omega = [-1,1]^m\)</span> denotes the
+unsisolvent nodes and <span class="math notranslate nohighlight">\(f: \Omega\longrightarrow \mathbb{R}\)</span> a function.</p>
+<p>Thereby, the coefficients <span class="math notranslate nohighlight">\(c_\alpha \in \mathbb{R}\)</span> of the
+Newton polynomials</p>
+<div class="math notranslate nohighlight">
+\[N_\alpha(x) = \prod_{i=1}^m\prod_{j=0}^{\alpha_i -1}(x- p_{j,i})\,,\quad  p_{j,i} \in P_i\]</div>
+<p>can be derived by the <strong>multivariate Divided Difference Scheme (DDS)</strong> whenever the generating nodes <span class="math notranslate nohighlight">\(\mathrm{GP} = \oplus_{i=1}^m P_i\)</span> are fixed.
+In fact, DDS requires quadratic <span class="math notranslate nohighlight">\(\mathcal{O}(|A|^2)\)</span>
+runtime complexity and linear storage <span class="math notranslate nohighlight">\(\mathcal{O}(|A|)\)</span> amount.</p>
+<p>Once given the Newton interpolant of a function <span class="math notranslate nohighlight">\(f\)</span> its <strong>evaluation</strong> can be realised by a generalisation of the classic
+<strong>Aitken-Neville algorithm</strong><a class="footnote-reference brackets" href="#footcite-neville" id="id6">6</a>.</p>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p id="id7"><dl class="footnote brackets">
+<dt class="label" id="footcite-stoer2002"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Josef Stoer and Roland Bulirsch. <em>Introduction to numerical analysis</em>. Volume 12. Springer Science &amp; Business Media, 2002.</p>
+</dd>
+<dt class="label" id="footcite-trefethen2019"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Lloyd N Trefethen. <em>Approximation Theory and Approximation Practice, Extended Edition</em>. SIAM, 2019.</p>
+</dd>
+<dt class="label" id="footcite-gautschi2012"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>Walter Gautschi. <em>Numerical analysis</em>. Birkhäuser Boston, 2012. <a class="reference external" href="https://doi.org/10.1007/978-0-8176-8259-0">doi:10.1007/978-0-8176-8259-0</a>.</p>
+</dd>
+<dt class="label" id="footcite-leja1957"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dd><p>Franciszek Leja. Sur certaines suites liées aux ensembles plans et leur application à la représentation conforme. <em>Annales Polonici Mathematici</em>, 4(1):8–13, 1957. <a class="reference external" href="https://doi.org/10.4064/ap-4-1-8-13">doi:10.4064/ap-4-1-8-13</a>.</p>
+</dd>
+<dt class="label" id="footcite-hecht2020"><span class="brackets"><a class="fn-backref" href="#id5">5</a></span></dt>
+<dd><p>Michael Hecht, Krzysztof Gonciarz, Jannik Michelfeit, Vladimir Sivkin, and Ivo F Sbalzarini. Multivariate interpolation on unisolvent nodes–lifting the curse of dimensionality. <em>arXiv preprint arXiv:2010.10824</em>, 2020.</p>
+</dd>
+<dt class="label" id="footcite-neville"><span class="brackets"><a class="fn-backref" href="#id6">6</a></span></dt>
+<dd><p>G Mühlbach and others. Neville-Aitken algorithms for interpolation by functions of Chebychev-systems in the sense of Newton and in a generalized sense of Hermite. <em>Theor. Approximation Appl. Conf. Proc.; Calgary; New York; Academic Press; pp. 200-212; Bibl. 4 Ref.</em>, 1976.</p>
+</dd>
+</dl>
+</p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="polynomial-bases.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Multivariate polynomial bases</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="interpolation-evaluation.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Evaluation of multivariate polynomials</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Minterpy development team.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

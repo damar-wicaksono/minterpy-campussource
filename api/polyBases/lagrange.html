@@ -1,0 +1,1101 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lagrange Polynomial Base &#8212; Minterpy 0.1</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="canonical" href="https://minterpy.readthedocs.io/en/latest/api/polyBases/lagrange.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Polynomial Transformation classes" href="../transformations/index.html" />
+    <link rel="prev" title="Newton Polynomial Base" href="newton.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/minterpy-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../getting-started/index.html">
+  Getting Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../how-to/index.html">
+  How-to
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../fundamentals/index.html">
+  Fundamentals
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../contributors/index.html">
+  Contributors
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../glossary.html">
+  Glossary
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../interpolation/index.html">
+   Interpolation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../interpolation/interpolate.html">
+     interpolate function
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../interpolation/interpolant.html">
+     Interpolant class
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../interpolation/interpolator.html">
+     Interpolator class
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../core/index.html">
+   Core modules
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../core/multi_index.html">
+     Multi index sets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../core/grid.html">
+     Grid
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../core/tree.html">
+     Multi index tree
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../core/ABC/index.html">
+     Abstract base classes
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../core/ABC/polyABC.html">
+       Multivariate polynomial ABC
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../core/ABC/trafoABC.html">
+       Transformation ABC
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../core/ABC/operatorABC.html">
+       Operator ABC
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Polynomial Base classes
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="canonical.html">
+     Canonical Polynomial Base
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="newton.html">
+     Newton Polynomial Base
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Lagrange Polynomial Base
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../transformations/index.html">
+   Polynomial Transformation classes
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformations/transformationCanonical.html">
+     From Canonical basis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformations/transformationNewton.html">
+     From Newton basis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformations/transformationLagrange.html">
+     From Lagrange basis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformations/transformationIdentity.html">
+     Identity transformation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformations/interface.html">
+     Helper functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../transformOperators/index.html">
+   Transformation Operator classes
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformOperators/barycentricOp.html">
+     Barycentric Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformOperators/matrixTransform.html">
+     Matrix Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformOperators/barycentricDictTransform.html">
+     Barycentric Dict Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformOperators/barycentricFactorisedTransform.html">
+     Barycentric Factorised Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformOperators/barycentricPiecewiseTransform.html">
+     Barycentric Piecewise Operator
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../internal/index.html">
+   Internal API
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internal/utils.html">
+     utility functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internal/coreutils.html">
+     core utility functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internal/trafoutils.html">
+     transformation utility functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internal/verification.html">
+     verification functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internal/jit_compiled_utils.html">
+     numba accelerated utility functions
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="module-minterpy.polynomials.lagrange_polynomial">
+<span id="lagrange-polynomial-base"></span><h1>Lagrange Polynomial Base<a class="headerlink" href="#module-minterpy.polynomials.lagrange_polynomial" title="Permalink to this headline">¶</a></h1>
+<p>LagrangePolynomial class</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">minterpy.polynomials.lagrange_polynomial.</span></span><span class="sig-name descname"><span class="pre">LagrangePolynomial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">multi_index</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../core/multi_index.html#minterpy.core.multi_index.MultiIndexSet" title="minterpy.core.multi_index.MultiIndexSet"><span class="pre">minterpy.core.multi_index.MultiIndexSet</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coeffs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">internal_domain</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_domain</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../core/grid.html#minterpy.core.grid.Grid" title="minterpy.core.grid.Grid"><span class="pre">minterpy.core.grid.Grid</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC</span></code></a></p>
+<p>Datatype to discribe polynomials in Lagrange base.</p>
+<p>A polynomial in Lagrange basis is the sum of so called Lagrange polynomials (each multiplied with a coefficient).
+A <em class="xref py py-obj">single</em> Lagrange monomial is per definition 1 on one of the grid points and 0 on all others.</p>
+<p class="rubric">Notes</p>
+<p>A polynomial in Lagrange basis is well defined also for multi indices which are lexicographically incomplete. This means that the corresponding Lagrange polynomials also form a basis in such cases. These Lagrange polynomials however will possess their special property of being 1 on a single grid point and 0 on all others, with respect to the given grid! This allows defining very “sparse” polynomials (few multi indices -&gt; few coefficients), but which still fulfill additional constraints (vanish on additional grid points). Practically this can be achieved by storing a “larger” grid (defined on a larger set of multi indices). In this case the transformation matrices become non-square, since there are fewer Lagrange polynomials than there are grid points (&lt;-&gt; only some of the Lagrange polynomials of this basis are “active”). Conceptually this is equal to fix the “inactivate” coefficients to always be 0.</p>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>provide a short definition of this base here.</p></li>
+</ul>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference internal" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.coeffs" title="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.coeffs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coeffs</span></code></a></dt><dd><p>Array which stores the coefficients of the polynomial.</p>
+</dd>
+<dt><a class="reference internal" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.nr_active_monomials" title="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.nr_active_monomials"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nr_active_monomials</span></code></a></dt><dd><p>Number of active monomials of the polynomial(s).</p>
+</dd>
+<dt><a class="reference internal" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.spatial_dimension" title="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.spatial_dimension"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spatial_dimension</span></code></a></dt><dd><p>Spatial dimension.</p>
+</dd>
+<dt><a class="reference internal" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.unisolvent_nodes" title="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.unisolvent_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unisolvent_nodes</span></code></a></dt><dd><p>Unisolvent nodes the polynomial(s) is(are) defined on.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__add__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Addition of the polynomial(s) with another given polynomial(s).</p>
+<p>This function is called, if two polynomials are added like <code class="docutils literal notranslate"><span class="pre">P1</span> <span class="pre">+</span> <span class="pre">P2</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC"><em>MultivariatePolynomialSingleABC</em></a>) – the other polynomial, which is added.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The result of <code class="docutils literal notranslate"><span class="pre">self</span> <span class="pre">+</span> <span class="pre">other</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC">MultivariatePolynomialSingleABC</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._add" title="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._add"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_add</span></code></a></dt><dd><p>concrete implementation of <code class="docutils literal notranslate"><span class="pre">__add__</span></code></p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Internally it calles the static method <code class="docutils literal notranslate"><span class="pre">self._add</span></code> from the concrete implementation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluation of the polynomial.</p>
+<p>This function is called, if an instance of the polynomial(s) is called: <code class="docutils literal notranslate"><span class="pre">P(x)</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>arg</strong><span class="classifier">np.ndarray</span></dt><dd><p>Batch array where the polynomial(s) is evaluated. The shape needs to be <code class="docutils literal notranslate"><span class="pre">(N,d)</span></code> or <code class="docutils literal notranslate"><span class="pre">(N,d,n)</span></code>, where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of points, <code class="docutils literal notranslate"><span class="pre">d</span></code> is the dimension of the space and <code class="docutils literal notranslate"><span class="pre">n</span></code> is the number of polynomials (if present). Actually, <code class="docutils literal notranslate"><span class="pre">arg</span></code> denotes list of <em class="xref py py-obj">d</em>-tuples containing the components of the point in space.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>np.ndarray</dt><dd><p>The output array of the scalar values of the polynomials the output may be a ndarray when multiple sets of coefficients have been stored</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._eval" title="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._eval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_eval</span></code></a></dt><dd><p>concrete implementation of the evaluation of the polynomial(s)</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Internally the concrete implementation of the static method <code class="docutils literal notranslate"><span class="pre">_eval</span></code> is called.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__copy__">
+<span class="sig-name descname"><span class="pre">__copy__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__copy__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates of a shallow copy.</p>
+<p>This function is called, if one uses the top-level function <code class="docutils literal notranslate"><span class="pre">copy()</span></code> on an instance of this class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The copy of the current instance.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC">MultivariatePolynomialSingleABC</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/dev/library/copy.html#copy.copy" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy.copy</span></code></a></dt><dd><p>copy operator form the python standard library.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__deepcopy__">
+<span class="sig-name descname"><span class="pre">__deepcopy__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mem</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__deepcopy__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates of a deepcopy.</p>
+<p>This function is called, if one uses the top-level function <code class="docutils literal notranslate"><span class="pre">deepcopy()</span></code> on an instance of this class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The deepcopy of the current instance.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC">MultivariatePolynomialSingleABC</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://docs.python.org/dev/library/copy.html#copy.deepcopy" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy.deepcopy</span></code></a></dt><dd><p>copy operator form the python standard library.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">multi_index</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../core/multi_index.html#minterpy.core.multi_index.MultiIndexSet" title="minterpy.core.multi_index.MultiIndexSet"><span class="pre">minterpy.core.multi_index.MultiIndexSet</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coeffs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">internal_domain</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_domain</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../core/grid.html#minterpy.core.grid.Grid" title="minterpy.core.grid.Grid"><span class="pre">minterpy.core.grid.Grid</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__mul__">
+<span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__mul__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multiplication of the polynomial(s) with another given polynomial(s).</p>
+<p>This function is called, if two polynomials are multiplied like <code class="docutils literal notranslate"><span class="pre">P1</span> <span class="pre">*</span> <span class="pre">P2</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC"><em>MultivariatePolynomialSingleABC</em></a>) – the other polynomial, which is multiplied.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The result of <code class="docutils literal notranslate"><span class="pre">self</span> <span class="pre">*</span> <span class="pre">other</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC">MultivariatePolynomialSingleABC</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._mul" title="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._mul"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_mul</span></code></a></dt><dd><p>concrete implementation of <code class="docutils literal notranslate"><span class="pre">__mul__</span></code></p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Internally it calles the static method <code class="docutils literal notranslate"><span class="pre">self._mul</span></code> from the concrete implementation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__neg__">
+<span class="sig-name descname"><span class="pre">__neg__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__neg__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Negation of the polynomial(s).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>new polynomial with negated coefficients.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC">MultivariatePolynomialSingleABC</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__pos__">
+<span class="sig-name descname"><span class="pre">__pos__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__pos__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plus signing of polynomial(s).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the same polynomial</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC">MultivariatePolynomialSingleABC</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__radd__">
+<span class="sig-name descname"><span class="pre">__radd__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__radd__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Right sided addition of the polynomial(s) with another given polynomial(s).</p>
+<p>This function is called, if two polynomials are added like <code class="docutils literal notranslate"><span class="pre">P1</span> <span class="pre">+</span> <span class="pre">P2</span></code> from the right side.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC"><em>MultivariatePolynomialSingleABC</em></a>) – The other polynomial, where this instance is added on.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The result of <code class="docutils literal notranslate"><span class="pre">other</span> <span class="pre">+</span> <span class="pre">self</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC">MultivariatePolynomialSingleABC</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">_radd</span></code></dt><dd><p>concrete implementation of <code class="docutils literal notranslate"><span class="pre">__radd__</span></code></p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Internally it calles the static method <code class="docutils literal notranslate"><span class="pre">self._radd</span></code> from the concrete implementation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__rmul__">
+<span class="sig-name descname"><span class="pre">__rmul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__rmul__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Right sided multiplication of the polynomial(s) with another given polynomial(s).</p>
+<p>This function is called, if two polynomials are multiplied like <code class="docutils literal notranslate"><span class="pre">P1*P2</span></code> from the right side.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC"><em>MultivariatePolynomialSingleABC</em></a>) – The other polynomial, where this instance is multplied on.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The result of <code class="docutils literal notranslate"><span class="pre">other</span> <span class="pre">*</span> <span class="pre">self</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC">MultivariatePolynomialSingleABC</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">_rmul</span></code></dt><dd><p>concrete implementation of <code class="docutils literal notranslate"><span class="pre">__rmul__</span></code></p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Internally it calles the static method <code class="docutils literal notranslate"><span class="pre">self._rmul</span></code> from the concrete implementation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__rsub__">
+<span class="sig-name descname"><span class="pre">__rsub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__rsub__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Right sided difference of the polynomial(s) with another given polynomial(s).</p>
+<p>This function is called, if two polynomials are substracted like <code class="docutils literal notranslate"><span class="pre">P1</span> <span class="pre">-</span> <span class="pre">P2</span></code> from the right side.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC"><em>MultivariatePolynomialSingleABC</em></a>) – The other polynomial, where this instance is substracted from.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The result of <code class="docutils literal notranslate"><span class="pre">other</span> <span class="pre">-</span> <span class="pre">self</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC">MultivariatePolynomialSingleABC</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">_rsub</span></code></dt><dd><p>concrete implementation of <code class="docutils literal notranslate"><span class="pre">__rsub__</span></code></p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Internally it calles the static method <code class="docutils literal notranslate"><span class="pre">self._rsub</span></code> from the concrete implementation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__sub__">
+<span class="sig-name descname"><span class="pre">__sub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__sub__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Substraction of the polynomial(s) with another given polynomial(s).</p>
+<p>This function is called, if two polynomials are substracted like <code class="docutils literal notranslate"><span class="pre">P1</span> <span class="pre">-</span> <span class="pre">P2</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC"><em>MultivariatePolynomialSingleABC</em></a>) – the other polynomial, which is substracted.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The result of <code class="docutils literal notranslate"><span class="pre">self</span> <span class="pre">-</span> <span class="pre">other</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC">MultivariatePolynomialSingleABC</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._sub" title="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._sub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_sub</span></code></a></dt><dd><p>concrete implementation of <code class="docutils literal notranslate"><span class="pre">__sub__</span></code></p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Internally it calles the static method <code class="docutils literal notranslate"><span class="pre">self._sub</span></code> from the concrete implementation.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._add">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">_add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">poly1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poly2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Addition of two polynomials in Lagrange basis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>poly1</strong> (<a class="reference internal" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial" title="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial"><em>LagrangePolynomial</em></a>) – First polynomial to be added.</p></li>
+<li><p><strong>poly2</strong> (<a class="reference internal" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial" title="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial"><em>LagrangePolynomial</em></a>) – Second polynomial to be added.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The result of <code class="docutils literal notranslate"><span class="pre">poly1</span> <span class="pre">+</span> <span class="pre">poly2</span></code></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial" title="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial">LagrangePolynomial</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._div">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">_div</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._div" title="Permalink to this definition">¶</a></dt>
+<dd><p>Placeholder function.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This feature is not implemented yet!</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._eval">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">_eval</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Placeholder function.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This feature is not implemented yet!</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._gen_grid_default">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">_gen_grid_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">multi_index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._gen_grid_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the default <code class="xref py py-class docutils literal notranslate"><span class="pre">Grid</span></code> for a given <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndexSet</span></code> instance.</p>
+<p>For the default values of the Grid class, see <code class="xref py py-class docutils literal notranslate"><span class="pre">minterpy.Grid</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>multi_index</strong> (<a class="reference internal" href="../core/multi_index.html#minterpy.core.multi_index.MultiIndexSet" title="minterpy.core.multi_index.MultiIndexSet"><em>MultiIndexSet</em></a>) – An instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndexSet</span></code> for which the default <code class="xref py py-class docutils literal notranslate"><span class="pre">Grid</span></code> shall be build</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">Grid</span></code> with the default optional parameters.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../core/grid.html#minterpy.core.grid.Grid" title="minterpy.core.grid.Grid">Grid</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._mul">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">_mul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">poly1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poly2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._mul" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multiplication of two polynomials in Lagrange basis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>poly1</strong> (<a class="reference internal" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial" title="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial"><em>LagrangePolynomial</em></a>) – First polynomial to be multiplied.</p></li>
+<li><p><strong>poly2</strong> (<a class="reference internal" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial" title="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial"><em>LagrangePolynomial</em></a>) – Second polynomial to be multiplied.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The result of <code class="docutils literal notranslate"><span class="pre">poly1</span> <span class="pre">*</span> <span class="pre">poly2</span></code></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial" title="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial">LagrangePolynomial</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._new_instance_if_necessary">
+<span class="sig-name descname"><span class="pre">_new_instance_if_necessary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_grid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_indices</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../core/multi_index.html#minterpy.core.multi_index.MultiIndexSet" title="minterpy.core.multi_index.MultiIndexSet"><span class="pre">minterpy.core.multi_index.MultiIndexSet</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC"><span class="pre">minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC</span></a></span></span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._new_instance_if_necessary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs a new instance only if the multi indices have changed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>new_grid</strong> (<a class="reference internal" href="../core/grid.html#minterpy.core.grid.Grid" title="minterpy.core.grid.Grid"><em>Grid</em></a>) – Grid instance the polynomial is defined on.</p></li>
+<li><p><strong>new_indices</strong> (<a class="reference internal" href="../core/multi_index.html#minterpy.core.multi_index.MultiIndexSet" title="minterpy.core.multi_index.MultiIndexSet"><em>MultiIndexSet</em></a><em>, </em><em>optional</em>) – <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndexSet</span></code> instance for the polynomial(s), needs to be a subset of the current <code class="docutils literal notranslate"><span class="pre">multi_index</span></code>. Default is <code class="xref py py-class docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Same polynomial instance if <code class="docutils literal notranslate"><span class="pre">grid</span></code> and <code class="docutils literal notranslate"><span class="pre">multi_index</span></code> stay the same, otherwise new polynomial instance with the new <code class="docutils literal notranslate"><span class="pre">grid</span></code> and <code class="docutils literal notranslate"><span class="pre">multi_index</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC">MultivariatePolynomialSingleABC</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._pow">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">_pow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._pow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Placeholder function.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This feature is not implemented yet!</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._sub">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">_sub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">poly1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poly2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial._sub" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subtraction of two polynomials in Lagrange basis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>poly1</strong> (<a class="reference internal" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial" title="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial"><em>LagrangePolynomial</em></a>) – First polynomial from which will be substracted.</p></li>
+<li><p><strong>poly2</strong> (<a class="reference internal" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial" title="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial"><em>LagrangePolynomial</em></a>) – Second polynomial which is substracted.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The result of <code class="docutils literal notranslate"><span class="pre">poly1</span> <span class="pre">-</span> <span class="pre">poly2</span></code></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial" title="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial">LagrangePolynomial</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.add_points">
+<span class="sig-name descname"><span class="pre">add_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exponents</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC"><span class="pre">minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC</span></a></span></span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.add_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extend <code class="docutils literal notranslate"><span class="pre">grid</span></code> and <code class="docutils literal notranslate"><span class="pre">multi_index</span></code></p>
+<p>Adds points <code class="docutils literal notranslate"><span class="pre">grid</span></code> and exponents to <code class="docutils literal notranslate"><span class="pre">multi_index</span></code> related to a given set of additional exponents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>exponents</strong> (<em>np.ndarray</em>) – Array of exponents added.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>New polynomial with the added exponents.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC">MultivariatePolynomialSingleABC</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.coeffs">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">coeffs</span></span><em class="property"><span class="pre">:</span> <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.coeffs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array which stores the coefficients of the polynomial.</p>
+<p>With shape (N,) or (N, p) the coefficients of the multivariate polynomial(s), where N is the amount of monomials and p is the amount of polynomials.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Array of coefficients.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – Raised if the coeffs are not initialised.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>It is allowed to set the coefficients to <em class="xref py py-obj">None</em> to represent a not yet initialised polynomial</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.expand_dim">
+<span class="sig-name descname"><span class="pre">expand_dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_internal_domain</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_user_domain</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.expand_dim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expand the spatial dimention.</p>
+<p>Expands the dimension of the domain space of the polynomial by adding zeros to the multi_indices
+(which is equivalent to the multiplication of ones to each monomial).
+Furthermore, the grid is now embedded in the higher dimensional space by pinning the grid arrays to the origin in the additional spatial dimension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dim</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – Number of additional dimensions.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.from_degree">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_degree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spatial_dimension</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">poly_degree</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">lp_degree</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">coeffs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">internal_domain</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_domain</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.from_degree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise Polynomial from given coefficients and the default construction for given polynomial degree, spatial dimension and <span class="math notranslate nohighlight">\(l_p\)</span> degree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spatial_dimension</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – Dimension of the domain space of the polynomial.</p></li>
+<li><p><strong>poly_degree</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The degree of the polynomial, i.e. the (integer) supremum of the <span class="math notranslate nohighlight">\(l_p\)</span> norms of the monomials.</p></li>
+<li><p><strong>lp_degree</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The <span class="math notranslate nohighlight">\(l_p\)</span> degree used to determine the polynomial degree.</p></li>
+<li><p><strong>coeffs</strong> (<em>np.ndarray</em>) – coefficients of the polynomial. These shall be 1D for a single polynomial, where the length of the array is the number of monomials given by the <code class="docutils literal notranslate"><span class="pre">multi_index</span></code>. For a set of similar polynomials (with the same number of monomials) the array can also be 2D, where the first axis refers to the monomials and the second axis refers to the polynomials.</p></li>
+<li><p><strong>internal_domain</strong> (<em>np.ndarray</em><em> or </em><em>callable</em>) – the internal domain (factory) where the polynomials are defined on, e.g. <span class="math notranslate nohighlight">\([-1,1]^d\)</span> where <span class="math notranslate nohighlight">\(d\)</span> is the dimension of the domain space. If a <code class="docutils literal notranslate"><span class="pre">callable</span></code> is passed, it shall get the dimension of the domain space and returns the <code class="docutils literal notranslate"><span class="pre">internal_domain</span></code> as an <code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>.</p></li>
+<li><p><strong>user_domain</strong> (<em>np.ndarray</em><em> or </em><em>callable</em>) – the domain window (factory), from which the arguments of a polynomial are transformed to the internal domain. If a <code class="docutils literal notranslate"><span class="pre">callable</span></code> is passed, it shall get the dimension of the domain space and returns the <code class="docutils literal notranslate"><span class="pre">user_domain</span></code> as an <code class="xref py py-class docutils literal notranslate"><span class="pre">np.ndarray</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.from_poly">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_poly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">polynomial</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC"><span class="pre">minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_coeffs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC"><span class="pre">minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC</span></a></span></span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.from_poly" title="Permalink to this definition">¶</a></dt>
+<dd><p>constructs a new polynomial instance based on the properties of an input polynomial</p>
+<p>useful for copying polynomials of other types</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>polynomial</strong> – input polynomial instance defining the properties to be reused</p></li>
+<li><p><strong>new_coeffs</strong> – the coefficients the new polynomials should have. using <em class="xref py py-obj">polynomial.coeffs</em> if <em class="xref py py-obj">None</em></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>new polynomial instance with equal properties</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The coefficients can also be assigned later.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.generate_internal_domain">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">generate_internal_domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spatial_dimension</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.generate_internal_domain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Building and verification of domains.</p>
+<p>This function builds a suitable domain as the cartesian product of a one-
+dimensional domain, or verifies the domain shape, of a multivariate domain is
+passed. If None is passed, the default domain is build from [-1,1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>domain</strong> (<em>array_like</em><em>, </em><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.11)"><em>None</em></a>) – Either one-dimensional domain <code class="docutils literal notranslate"><span class="pre">(min,max)</span></code>, or a stack of domains for each domain with shape <code class="docutils literal notranslate"><span class="pre">(spatial_dimension,2)</span></code>. If <code class="xref py py-class docutils literal notranslate"><span class="pre">None</span></code> is passed, the <code class="docutils literal notranslate"><span class="pre">DEFAULT_DOMAIN</span></code> is repeated for each spatial dimentsion.</p></li>
+<li><p><strong>spatial_dimension</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – Dimentsion of the domain space.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return verified_domain</dt>
+<dd class="field-even"><p>Stack of domains for each dimension with shape <code class="docutils literal notranslate"><span class="pre">(spatial_dimension,2)</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If no domain with the expected shape can be constructed from the input.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.generate_user_domain">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">generate_user_domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spatial_dimension</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.generate_user_domain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Building and verification of domains.</p>
+<p>This function builds a suitable domain as the cartesian product of a one-
+dimensional domain, or verifies the domain shape, of a multivariate domain is
+passed. If None is passed, the default domain is build from [-1,1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>domain</strong> (<em>array_like</em><em>, </em><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.11)"><em>None</em></a>) – Either one-dimensional domain <code class="docutils literal notranslate"><span class="pre">(min,max)</span></code>, or a stack of domains for each domain with shape <code class="docutils literal notranslate"><span class="pre">(spatial_dimension,2)</span></code>. If <code class="xref py py-class docutils literal notranslate"><span class="pre">None</span></code> is passed, the <code class="docutils literal notranslate"><span class="pre">DEFAULT_DOMAIN</span></code> is repeated for each spatial dimentsion.</p></li>
+<li><p><strong>spatial_dimension</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – Dimentsion of the domain space.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return verified_domain</dt>
+<dd class="field-even"><p>Stack of domains for each dimension with shape <code class="docutils literal notranslate"><span class="pre">(spatial_dimension,2)</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If no domain with the expected shape can be constructed from the input.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.make_complete">
+<span class="sig-name descname"><span class="pre">make_complete</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC"><span class="pre">minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC</span></a></span></span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.make_complete" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a possibly new polynomial instance with a complete multi index set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>completed polynomial, where additional coefficients setted to zero.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="../core/ABC/polyABC.html#minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC" title="minterpy.core.ABC.multivariate_polynomial_abstract.MultivariatePolynomialSingleABC">MultivariatePolynomialSingleABC</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>the active monomials stay equal. only the grid (“basis”) changes</p></li>
+<li><p>in the case of a Lagrange polynomial this could be done by evaluating the polynomial on the complete grid</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.nr_active_monomials">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">nr_active_monomials</span></span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.nr_active_monomials" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of active monomials of the polynomial(s).</p>
+<p>For caching and methods based on switching single monomials on and off, it is distigushed between active and passive monomials, where only the active monomials particitpate on exposed functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Number of active monomials.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)">int</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This is usually equal to the “amount of coefficients”. However the coefficients can also be a 2D array (representing a multitude of polynomials with the same base grid).</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.spatial_dimension">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">spatial_dimension</span></span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.spatial_dimension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spatial dimension.</p>
+<p>The dimension of space where the polynomial(s) live on.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Dimension of domain space.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)">int</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This is propagated from the <code class="docutils literal notranslate"><span class="pre">multi_index.spatial_dimension</span></code>.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.unisolvent_nodes">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">unisolvent_nodes</span></span><a class="headerlink" href="#minterpy.polynomials.lagrange_polynomial.LagrangePolynomial.unisolvent_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unisolvent nodes the polynomial(s) is(are) defined on.</p>
+<p>For definitions of unisolvent nodes see the mathematical introduction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Array of unisolvent nodes.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This is propagated from from <code class="docutils literal notranslate"><span class="pre">self.grid.unisolvent_nodes</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="newton.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Newton Polynomial Base</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../transformations/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Polynomial Transformation classes</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Minterpy development team.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,724 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>verification functions &#8212; Minterpy 0.1</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="canonical" href="https://minterpy.readthedocs.io/en/latest/api/internal/verification.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="numba accelerated utility functions" href="jit_compiled_utils.html" />
+    <link rel="prev" title="transformation utility functions" href="trafoutils.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/minterpy-logo.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../getting-started/index.html">
+  Getting Started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../how-to/index.html">
+  How-to
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../fundamentals/index.html">
+  Fundamentals
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  API Reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../contributors/index.html">
+  Contributors
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../glossary.html">
+  Glossary
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../interpolation/index.html">
+   Interpolation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../interpolation/interpolate.html">
+     interpolate function
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../interpolation/interpolant.html">
+     Interpolant class
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../interpolation/interpolator.html">
+     Interpolator class
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../core/index.html">
+   Core modules
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../core/multi_index.html">
+     Multi index sets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../core/grid.html">
+     Grid
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../core/tree.html">
+     Multi index tree
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../core/ABC/index.html">
+     Abstract base classes
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../core/ABC/polyABC.html">
+       Multivariate polynomial ABC
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../core/ABC/trafoABC.html">
+       Transformation ABC
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../core/ABC/operatorABC.html">
+       Operator ABC
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../polyBases/index.html">
+   Polynomial Base classes
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../polyBases/canonical.html">
+     Canonical Polynomial Base
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../polyBases/newton.html">
+     Newton Polynomial Base
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../polyBases/lagrange.html">
+     Lagrange Polynomial Base
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../transformations/index.html">
+   Polynomial Transformation classes
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformations/transformationCanonical.html">
+     From Canonical basis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformations/transformationNewton.html">
+     From Newton basis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformations/transformationLagrange.html">
+     From Lagrange basis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformations/transformationIdentity.html">
+     Identity transformation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformations/interface.html">
+     Helper functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../transformOperators/index.html">
+   Transformation Operator classes
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformOperators/barycentricOp.html">
+     Barycentric Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformOperators/matrixTransform.html">
+     Matrix Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformOperators/barycentricDictTransform.html">
+     Barycentric Dict Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformOperators/barycentricFactorisedTransform.html">
+     Barycentric Factorised Operator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transformOperators/barycentricPiecewiseTransform.html">
+     Barycentric Piecewise Operator
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Internal API
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="utils.html">
+     utility functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="coreutils.html">
+     core utility functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="trafoutils.html">
+     transformation utility functions
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     verification functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="jit_compiled_utils.html">
+     numba accelerated utility functions
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="module-minterpy.core.verification">
+<span id="verification-functions"></span><h1>verification functions<a class="headerlink" href="#module-minterpy.core.verification" title="Permalink to this headline">¶</a></h1>
+<p>functions for input verification</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="minterpy.core.verification.check_domain_fit">
+<span class="sig-prename descclassname"><span class="pre">minterpy.core.verification.</span></span><span class="sig-name descname"><span class="pre">check_domain_fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.core.verification.check_domain_fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks weather a given array of points is properly formatted and spans the standard domain <span class="math notranslate nohighlight">\([-1,1]^m\)</span>.</p>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>maybe remove the warnings.</p></li>
+<li><p>generalise to custom <code class="docutils literal notranslate"><span class="pre">internal_domain</span></code></p></li>
+</ul>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>points</strong> (<em>np.ndarray</em><em>, </em><em>shape =</em><em> (</em><em>m</em><em>, </em><em>k</em><em>)</em>) – array to be checked. Here <code class="docutils literal notranslate"><span class="pre">m</span></code> is the dimenstion of the domain and <code class="docutils literal notranslate"><span class="pre">k</span></code> is the number of points.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – if the grid points do not fit into the domain <span class="math notranslate nohighlight">\([-1;1]^m\)</span>.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – if less than one point is passed.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="minterpy.core.verification.check_dtype">
+<span class="sig-prename descclassname"><span class="pre">minterpy.core.verification.</span></span><span class="sig-name descname"><span class="pre">check_dtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected_dtype</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.core.verification.check_dtype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify if the input array has the expected dtype.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>np.ndarray</em>) – Array to be checked.</p></li>
+<li><p><strong>expected_dtype</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#type" title="(in Python v3.11)"><em>type</em></a>) – The dtype which is check against.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#TypeError" title="(in Python v3.11)"><strong>TypeError</strong></a> – if input array hasn’t the expected dtype.</p>
+</dd>
+</dl>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>use <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">not</span></code> instead of <code class="docutils literal notranslate"><span class="pre">!=</span></code>.</p></li>
+</ul>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="minterpy.core.verification.check_is_square">
+<span class="sig-prename descclassname"><span class="pre">minterpy.core.verification.</span></span><span class="sig-name descname"><span class="pre">check_is_square</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.core.verification.check_is_square" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if input array represents a square matrix.</p>
+<p>This is a special case of <code class="docutils literal notranslate"><span class="pre">check_shape</span></code> for <code class="docutils literal notranslate"><span class="pre">shape</span> <span class="pre">=</span> <span class="pre">(size,size)</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>np.ndarray</em>) – Array to be checked</p></li>
+<li><p><strong>size</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – expected length of each axes of the matrix. If <code class="xref py py-class docutils literal notranslate"><span class="pre">None</span></code> is passed, <code class="docutils literal notranslate"><span class="pre">size</span></code> is set to the length of the first axis of the input array.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#minterpy.core.verification.check_shape" title="minterpy.core.verification.check_shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_shape</span></code></a></dt><dd><p>general verification of array shapes.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="minterpy.core.verification.check_shape">
+<span class="sig-prename descclassname"><span class="pre">minterpy.core.verification.</span></span><span class="sig-name descname"><span class="pre">check_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="(in Python v3.11)"><span class="pre">tuple</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimensionality</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.core.verification.check_shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify the shape of an input array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>np.ndarray</em>) – array to be checked.</p></li>
+<li><p><strong>shape</strong> (<em>{None</em><em>,</em><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="(in Python v3.11)"><em>tuple</em></a><em>,</em><em>list}</em>) – the expected shape.Note, non integer values will be interpreted as variable size in the respective dimension. Default is <code class="xref py py-class docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>dimensionality</strong> (<em>{None</em><em>,</em><em>int}</em>) – dimension of the domain space (right?). Default is <code class="xref py py-class docutils literal notranslate"><span class="pre">None</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If input array hasn’t the expected dimensionality.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If input array hasn’t the expected size.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="minterpy.core.verification.check_type">
+<span class="sig-prename descclassname"><span class="pre">minterpy.core.verification.</span></span><span class="sig-name descname"><span class="pre">check_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">a</span></em>, <em class="sig-param"><span class="pre">expected_type=&lt;class</span> <span class="pre">'numpy.ndarray'&gt;</span></em>, <em class="sig-param"><span class="pre">*args</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.core.verification.check_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify if the input has the expected type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>Any</em>) – Object to be checked.</p></li>
+<li><p><strong>expected_type</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#type" title="(in Python v3.11)"><em>type</em></a><em>, </em><em>optional</em>) – The type which is check against. Default is <code class="docutils literal notranslate"><span class="pre">np.ndarray</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#TypeError" title="(in Python v3.11)"><strong>TypeError</strong></a> – if input object hasn’t the expected type.</p>
+</dd>
+</dl>
+<div class="admonition-todo admonition" id="id3">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>why not use <code class="docutils literal notranslate"><span class="pre">isinstance</span></code>?</p></li>
+<li><p>why pass <code class="docutils literal notranslate"><span class="pre">*args,</span> <span class="pre">**kwargs</span></code>?</p></li>
+</ul>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="minterpy.core.verification.check_type_n_values">
+<span class="sig-prename descclassname"><span class="pre">minterpy.core.verification.</span></span><span class="sig-name descname"><span class="pre">check_type_n_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.core.verification.check_type_n_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify that the input array has correct type and does neither contain <code class="docutils literal notranslate"><span class="pre">NaN</span></code> nor <code class="docutils literal notranslate"><span class="pre">inf</span></code> values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> (<em>np.ndarray</em>) – Array to be checked.</p>
+</dd>
+</dl>
+<div class="admonition-todo admonition" id="id4">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>why pass <code class="docutils literal notranslate"><span class="pre">*args,</span> <span class="pre">**kwargs</span></code>?</p></li>
+</ul>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#minterpy.core.verification.check_type" title="minterpy.core.verification.check_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_type</span></code></a></dt><dd><p>verification of the type</p>
+</dd>
+<dt><a class="reference internal" href="#minterpy.core.verification.check_values" title="minterpy.core.verification.check_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_values</span></code></a></dt><dd><p>verification of the values</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="minterpy.core.verification.check_values">
+<span class="sig-prename descclassname"><span class="pre">minterpy.core.verification.</span></span><span class="sig-name descname"><span class="pre">check_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><span class="pre">numpy.ndarray</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.core.verification.check_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify that the input array has neither <code class="docutils literal notranslate"><span class="pre">NaN</span></code> nor <code class="docutils literal notranslate"><span class="pre">inf</span></code> values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> (<em>np.ndarray</em>) – Array to be checked.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – if input array contains either <code class="docutils literal notranslate"><span class="pre">NaN</span></code> or <code class="docutils literal notranslate"><span class="pre">inf</span></code> values (or both).</p>
+</dd>
+</dl>
+<div class="admonition-todo admonition" id="id5">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>why pass <code class="docutils literal notranslate"><span class="pre">*args,</span> <span class="pre">**kwargs</span></code>?</p></li>
+</ul>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="minterpy.core.verification.convert_eval_output">
+<span class="sig-prename descclassname"><span class="pre">minterpy.core.verification.</span></span><span class="sig-name descname"><span class="pre">convert_eval_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results_placeholder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.core.verification.convert_eval_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts an array to its squeezed version.</p>
+<p>The input array is copyed if necessary and the result is at least 1D.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>results_placeholder</strong> (<em>np.ndarray</em>) – Array to be converted.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A (at least 1D) squeezed version of the input array.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+<div class="admonition-todo admonition" id="id6">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>use <code class="docutils literal notranslate"><span class="pre">np.atleast_1D</span></code> instead of the size check.</p></li>
+</ul>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="minterpy.core.verification.rectify_eval_input">
+<span class="sig-prename descclassname"><span class="pre">minterpy.core.verification.</span></span><span class="sig-name descname"><span class="pre">rectify_eval_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coefficients</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exponents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verify_input</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.core.verification.rectify_eval_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rectify input for evaluation.</p>
+<div class="admonition-todo admonition" id="id7">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>refac this based on the respective datatypes, e.g. <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code> etc.</p></li>
+<li><p>function signature if somewhat misleading.</p></li>
+</ul>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – </p></li>
+<li><p><strong>coefficients</strong> (<em>np.ndarray</em>) – The coefficients of the Newton polynomials. Note, format fixed such that ‘lagrange2newton’ conversion matrices can be passed as the Newton coefficients of all Lagrange monomials of a polynomial without prior transponation</p></li>
+<li><p><strong>exponents</strong> (<em>np.ndarray</em>) – a multi index <code class="docutils literal notranslate"><span class="pre">alpha</span></code> for every Newton polynomial corresponding to the exponents of this <code class="docutils literal notranslate"><span class="pre">monomial</span></code></p></li>
+<li><p><strong>verify_input</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – weather the data types of the input should be checked.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If the number of coefficients does not match the number of monomials.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#TypeError" title="(in Python v3.11)"><strong>TypeError</strong></a> – if the input hasn’t the expected dtype.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(</span> <span class="pre">N,</span> <span class="pre">coefficients,</span> <span class="pre">m,</span> <span class="pre">nr_points,</span> <span class="pre">nr_polynomials,</span> <span class="pre">x)</span></code> with the rectifyed versions of the <code class="docutils literal notranslate"><span class="pre">coefficients</span></code> and the input array <code class="docutils literal notranslate"><span class="pre">x</span></code>. Furthermore, return the number of exponents <code class="docutils literal notranslate"><span class="pre">N</span></code>, the dimentsion of the domain space <code class="docutils literal notranslate"><span class="pre">m</span></code>, the number of passed points <code class="docutils literal notranslate"><span class="pre">nr_points</span></code> and the number of polynomials <code class="docutils literal notranslate"><span class="pre">nr_polynomials</span></code>.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)">int</a>, np.ndarray, <a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)">int</a>, <a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)">int</a>, <a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)">int</a>, np.ndarray)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="minterpy.core.verification.rectify_query_points">
+<span class="sig-prename descclassname"><span class="pre">minterpy.core.verification.</span></span><span class="sig-name descname"><span class="pre">rectify_query_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.core.verification.rectify_query_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rectify input arguments.</p>
+<p>This function checks if a given input has the correct shape, or if the correct shape can be infered. For the latter it returns a version of the input with the correct shape. Correct shape means here <code class="docutils literal notranslate"><span class="pre">(N,m)</span></code>, where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of points and <code class="docutils literal notranslate"><span class="pre">m</span></code> the dimentsion of the domain space.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – Array of arguemnts passed to a function.</p></li>
+<li><p><strong>m</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – Dimension of the domain space.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If the input array has not the expected dimensionality.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(nr_points,x)</span></code> where <code class="docutils literal notranslate"><span class="pre">nr_points</span></code> is the number of points and <code class="docutils literal notranslate"><span class="pre">x</span></code> is a version of the input array with the correct shape. If <code class="docutils literal notranslate"><span class="pre">x</span></code> already had the right shape, it is passed without copying.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="(in Python v3.11)">tuple</a>(<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)">int</a>,np.ndarray)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="minterpy.core.verification.verify_domain">
+<span class="sig-prename descclassname"><span class="pre">minterpy.core.verification.</span></span><span class="sig-name descname"><span class="pre">verify_domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spatial_dimension</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#minterpy.core.verification.verify_domain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Building and verification of domains.</p>
+<p>This function builds a suitable domain as the cartesian product of a one-
+dimensional domain, or verifies the domain shape, of a multivariate domain is
+passed. If None is passed, the default domain is build from [-1,1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>domain</strong> (<em>array_like</em><em>, </em><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.11)"><em>None</em></a>) – Either one-dimensional domain <code class="docutils literal notranslate"><span class="pre">(min,max)</span></code>, or a stack of domains for each domain with shape <code class="docutils literal notranslate"><span class="pre">(spatial_dimension,2)</span></code>. If <code class="xref py py-class docutils literal notranslate"><span class="pre">None</span></code> is passed, the <code class="docutils literal notranslate"><span class="pre">DEFAULT_DOMAIN</span></code> is repeated for each spatial dimentsion.</p></li>
+<li><p><strong>spatial_dimension</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – Dimentsion of the domain space.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return verified_domain</dt>
+<dd class="field-even"><p>Stack of domains for each dimension with shape <code class="docutils literal notranslate"><span class="pre">(spatial_dimension,2)</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If no domain with the expected shape can be constructed from the input.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="trafoutils.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">transformation utility functions</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="jit_compiled_utils.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">numba accelerated utility functions</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2021, Minterpy development team.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
